@@ -14,7 +14,15 @@ function App() {
     fetchData();
     return () => {};
   }, []);
-  return <div>{myObservedData.name}</div>;
+  return (
+    <div className="container">
+      <div class="card">
+        <div class="card-body">
+          {myObservedData.name} {myObservedData.email}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
