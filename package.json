@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "By [Nabil Arbouz](http://github.com/nabilarbouz) and [Anna Daccache](https://github.com/amdacccache)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amdacccache/OpTask.git"
+  },
+  "author": "Nabil Arbouz & Anna Daccache",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amdacccache/OpTask/issues"
+  },
+  "homepage": "https://github.com/amdacccache/OpTask#readme",
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.2.1"
+  }
+}
