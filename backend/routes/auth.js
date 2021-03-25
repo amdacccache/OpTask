@@ -38,7 +38,8 @@ router.post("/register", (req, res, next) => {
 });
 
 router.get("/isLoggedIn", (req, res, next) => {
-  res.send(req.isAuthenticated());
+  const isLoggedIn = req.isAuthenticated();
+  res.send({isLoggedIn: isLoggedIn});
 });
 
 router.get("/logout", (req, res, next) => {

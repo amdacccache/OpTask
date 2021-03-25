@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import "./Login.css";
 
 const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
@@ -30,13 +31,10 @@ const Login = (props) => {
   };
   if (!loginStatus) {
     return (
-      <div className="container">
-        <h1>Login</h1>
+      <main className="form-signin text-center">
+        <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="userEmail" className="form-label">
-              Email address
-            </label>
+          <div className="form-floating">
             <input
               type="email"
               className="form-control"
@@ -46,11 +44,9 @@ const Login = (props) => {
               onChange={handleEmailChange}
               required
             />
+            <label htmlFor="userEmail">Email address</label>
           </div>
-          <div className="mb-3">
-            <label htmlFor="userPassword" className="form-label">
-              Password
-            </label>
+          <div className="form-floating">
             <input
               type="password"
               className="form-control"
@@ -60,13 +56,14 @@ const Login = (props) => {
               onChange={handlePasswordChange}
               required
             />
+            <label htmlFor="userPassword">Password</label>
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="w-100 btn btn-lg btn-primary">
             Submit
           </button>
         </form>
-      </div>
+      </main>
     );
   } else {
     return <Redirect to="/dashboard" />;
