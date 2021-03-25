@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
+import LogoImage from "../Images/OpTask.png";
 
 const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
@@ -32,6 +33,7 @@ const Login = (props) => {
   if (!loginStatus) {
     return (
       <main className="form-signin text-center">
+        <img class="mb-4" src={LogoImage} alt="" width="200" height="200"></img>
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-floating">
