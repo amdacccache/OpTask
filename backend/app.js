@@ -1,9 +1,15 @@
 var express = require("express");
+require("dotenv").config();
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const opDB = require("./db/OpTaskDB");
+const passport = require("passport");
 
 var indexRouter = require("./routes/index");
+const authRouter = require("./routes/auth");
 
 var app = express();
 
@@ -13,6 +19,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "frontend/build")));
 
+app.use(
+  session({
+    secret: process.env.SECRET_STRING,
+    resave: false,
+    saveUninitialized: true,
+    // this next property is saving the session data in our DB
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_STRING,
+      dbName: "OpTask",
+      collection: "sessions",
+    }),
+    cookie: {
+      maxAge: 7 * 1000 * 60 * 60 * 25, // cookies/sessions will last a week before requiring a re-login
+    },
+  })
+);
+
+require("./auth/passportConfig");
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/", indexRouter);
+app.use("/auth", authRouter);
 
 module.exports = app;

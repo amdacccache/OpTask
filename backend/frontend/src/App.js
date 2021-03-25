@@ -1,27 +1,40 @@
-import { useState, useEffect, useRef } from "react";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import Dashboard from "./Dashboard/Dashboard";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 function App() {
-  const myData = useRef({});
-  const [myObservedData, setData] = useState({});
-
+  let loggedIn = useRef(null);
   useEffect(() => {
-    let data;
-    const fetchData = async function () {
-      data = await fetch("./data");
-      myData.current = await data.json();
-      setData(myData.current);
-    };
+    async function fetchData() {
+      loggedIn.current = await fetch("/auth/isLoggedIn", { method: "GET" });
+    }
     fetchData();
-    return () => {};
-  }, []);
+  });
+
   return (
-    <div className="container">
-      <div class="card">
-        <div class="card-body">
-          {myObservedData.name} {myObservedData.email}
-        </div>
-      </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/register">
+          <Register />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route exact path="/">
+          {loggedIn ? <Redirect to="/dashboard" /> : <Login />}
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
