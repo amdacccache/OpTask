@@ -34,16 +34,16 @@ function Dashboard() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="/profilePage">
                       <span data-feather="file"></span>
                       Profile
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <button className="btn nav-link">
                       <span data-feather="bar-chart-2"></span>
                       Create a new project
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
