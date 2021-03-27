@@ -10,7 +10,7 @@ const passport = require("passport");
 
 var indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
-
+const projectsRouter = require("./routes/projects");
 var app = express();
 
 app.use(logger("dev"));
@@ -40,7 +40,7 @@ require("./auth/passportConfig");
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   console.log(req.session);
   console.log(req.user);
   next();
@@ -48,7 +48,6 @@ app.use((req,res,next) => {
 
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
-
-
+app.use("/projects", projectsRouter);
 
 module.exports = app;

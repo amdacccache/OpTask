@@ -1,6 +1,7 @@
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Dashboard from "./Dashboard/Dashboard";
+import Project from "./Project/Project";
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route exact path="/">
           {loggedIn ? <Redirect to="/dashboard" /> : <Login />}
+        </Route>
+        <Route exact path="/projects/:projectId">
+          <Project />
         </Route>
       </Switch>
     </Router>
