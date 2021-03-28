@@ -3,7 +3,7 @@ import "./Profile.css";
 import { useEffect, useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 
-function Profile() {
+function Update() {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
 
@@ -183,4 +183,4 @@ function Profile() {
   }
 };
 
-export default Profile;
+export default Update;
