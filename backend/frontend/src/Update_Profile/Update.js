@@ -62,9 +62,9 @@ function Update() {
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                     <div className="mt-3">
                       <h4>John Doe</h4>
-                      <p className="text-secondary mb-1">"${users.fullname}"</p>
+                      <p className="text-secondary mb-1">John Smith</p>
                       <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                      <button class="btn btn-primary" href="/update/${users._id}">Edit Profile</button>
+                      <button class="btn btn-primary" href="/update">Edit Profile</button>
                     </div>
                   </div>
                 </div>
