@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./Login.css";
 import LogoImage from "../Images/OpTask.png";
 
@@ -33,6 +33,7 @@ const Login = (props) => {
   if (!loginStatus) {
     return (
       <main className="form-signin text-center">
+<<<<<<< HEAD
         <img
           className="mb-4"
           src={LogoImage}
@@ -40,6 +41,9 @@ const Login = (props) => {
           width="200"
           height="200"
         ></img>
+=======
+        <img class="mb-4" src={LogoImage} alt="OpTask Logo" width="200" height="200"></img>
+>>>>>>> annas-tasks
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-floating">
@@ -70,6 +74,8 @@ const Login = (props) => {
           <button type="submit" className="w-100 btn btn-lg btn-primary">
             Submit
           </button>
+
+          <Link class="signup-link" to="/register">Don't have an account? Sign up for OpTask!</Link>
         </form>
       </main>
     );

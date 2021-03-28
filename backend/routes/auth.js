@@ -30,6 +30,9 @@ router.post("/register", (req, res, next) => {
   const hash = saltHash.hash;
 
   opDB.saveNewUser({
+    fullname: req.body.userFullName,
+    institution: req.body.userInst,
+    job: req.body.userJob,
     username: req.body.userEmail,
     hash: hash,
     salt: salt,

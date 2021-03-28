@@ -4,6 +4,8 @@ import Dashboard from "./Dashboard/Dashboard";
 import Project from "./Project/Project";
 import "../node_modules/react-grid-layout/css/styles.css";
 import "../node_modules/react-resizable/css/styles.css";
+import Profile from "./Profile/Profile";
+import Update from "./Update_Profile/Update"
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,6 +34,12 @@ function App() {
         </Route>
         <Route exact path="/dashboard">
           <Dashboard />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
+        </Route>
+        <Route exact path="/profile/update">
+          <Update />
         </Route>
         <Route exact path="/">
           {loggedIn ? <Redirect to="/dashboard" /> : <Login />}
