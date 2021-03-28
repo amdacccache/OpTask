@@ -124,6 +124,26 @@ function OpTaskDB() {
       .toArray();
     return results;
   };
+
+  opDB.updateTaskTimelineState = async (newTimelineData) => {
+    let client;
+    console.log("Updating task timeline...");
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connecting to OpTask DB...");
+    const db = client.db(DB_NAME);
+    const tasksCollection = db.collection("tasks");
+    const result = await tasksCollection.updateOne(
+      { _id: new ObjectId(newTimelineData.id) },
+      {
+        $set: {
+          taskState: newTimelineData.newState,
+        },
+      }
+    );
+    console.log("completed update");
+    return result;
+  };
   return opDB;
 }
 

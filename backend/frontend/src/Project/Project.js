@@ -43,6 +43,7 @@ const Project = (props) => {
   }, [projectId]);
 
   const refreshTasks = async function () {
+    console.log("calling refresh of the tasks");
     const result = await fetch(`/projects/${projectId}/tasks`);
     const parsedResult = await result.json();
     setTasksData(parsedResult);
@@ -85,19 +86,57 @@ const Project = (props) => {
                 <h1 className="h2">Project: {projectData.projectName}</h1>
               </div>
               <div className="row">
-                <div className="container taskContainer col-4 border border-danger">
+                <div className="container taskContainer col-4 border border-danger rounded">
                   <h2>To-Do</h2>
                   <TaskForm projectId={projectId} newTaskAdded={refreshTasks} />
-                  {tasksData.map((task) => {
-                    //TODO create cards for tasks
-                    return <Task key={task._id} task={task} />;
-                  })}
+                  {tasksData
+                    .filter((task) => {
+                      return task.taskState === "todo";
+                    })
+                    .map((task) => {
+                      //TODO create cards for tasks
+                      return (
+                        <Task
+                          key={task._id}
+                          task={task}
+                          taskUpdated={refreshTasks}
+                        />
+                      );
+                    })}
                 </div>
-                <div className="container taskContainer col-4 border border-warning">
+                <div className="container taskContainer col-4 border border-warning rounded">
                   <h2> In-Progress</h2>
+                  {tasksData
+                    .filter((task) => {
+                      return task.taskState === "inprogress";
+                    })
+                    .map((task) => {
+                      //TODO create cards for tasks
+                      return (
+                        <Task
+                          key={task._id}
+                          task={task}
+                          taskUpdated={refreshTasks}
+                        />
+                      );
+                    })}
                 </div>
-                <div className="container taskContainer col-4 border border-success">
+                <div className="container taskContainer col-4 border border-success rounded">
                   <h2>Done</h2>
+                  {tasksData
+                    .filter((task) => {
+                      return task.taskState === "done";
+                    })
+                    .map((task) => {
+                      //TODO create cards for tasks
+                      return (
+                        <Task
+                          key={task._id}
+                          task={task}
+                          taskUpdated={refreshTasks}
+                        />
+                      );
+                    })}
                 </div>
               </div>
             </main>

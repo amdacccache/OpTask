@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const opDB = require("../db/OpTaskDB");
-
 router.get("/:id", async (req, res, next) => {
   const projectArray = await opDB.getUserProjects(req.params.id);
   if (projectArray) {
@@ -34,6 +33,14 @@ router.get("/:id/tasks", async (req, res, next) => {
   const projectTasks = await opDB.getTasks(req.params.id);
   if (projectTasks) {
     res.send(projectTasks);
+  }
+});
+
+router.post("/updatetask", async (req, res, next) => {
+  const newTaskTimelineObject = req.body;
+  const result = await opDB.updateTaskTimelineState(newTaskTimelineObject);
+  if (result) {
+    res.send({ done: true });
   }
 });
 module.exports = router;
