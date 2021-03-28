@@ -21,6 +21,7 @@ const TaskForm = (props) => {
     });
     if (response) {
       setTaskText("");
+      props.newTaskAdded();
     }
   };
 

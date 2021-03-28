@@ -1,5 +1,6 @@
 import Navbar from "../Navbar/Navbar";
 import TaskForm from "./TaskForm";
+import Task from "./Task";
 import "./Project.css";
 import { Redirect, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -41,6 +42,12 @@ const Project = (props) => {
     fetchTasks();
   }, [projectId]);
 
+  const refreshTasks = async function () {
+    const result = await fetch(`/projects/${projectId}/tasks`);
+    const parsedResult = await result.json();
+    setTasksData(parsedResult);
+  };
+
   if (isLoggedIn) {
     return (
       <div>
@@ -78,18 +85,18 @@ const Project = (props) => {
                 <h1 className="h2">Project: {projectData.projectName}</h1>
               </div>
               <div className="row">
-                <div className="container taskContainer col-4 border border-dark">
+                <div className="container taskContainer col-4 border border-danger">
                   <h2>To-Do</h2>
-                  <TaskForm projectId={projectId} />
+                  <TaskForm projectId={projectId} newTaskAdded={refreshTasks} />
                   {tasksData.map((task) => {
                     //TODO create cards for tasks
-                    return <div key={task._id}>{task.taskText}</div>;
+                    return <Task key={task._id} task={task} />;
                   })}
                 </div>
-                <div className="container taskContainer col-4 border border-dark">
+                <div className="container taskContainer col-4 border border-warning">
                   <h2> In-Progress</h2>
                 </div>
-                <div className="container taskContainer col-4 border border-dark">
+                <div className="container taskContainer col-4 border border-success">
                   <h2>Done</h2>
                 </div>
               </div>
