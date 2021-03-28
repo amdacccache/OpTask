@@ -95,7 +95,7 @@ function Dashboard() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="profile">
+                    <a className="nav-link" href="/profile">
                       <span data-feather="file"></span>
                       Profile
                     </a>

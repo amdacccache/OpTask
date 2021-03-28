@@ -19,7 +19,7 @@ function Profile() {
 
   if (isLoggedIn) {
     return (
-      <body>
+      <div class="profile-cont">
         <Navbar />
         <nav
           id="sidebarMenu"
@@ -52,12 +52,12 @@ function Profile() {
             </ul>
           </div>
         </nav> 
-        <div className="container">
+        <div className="profile-container">
         <div className="main-body">
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
-              <div className="card">
-                <div className="card-body">
+              <div className="profile-card">
+                <div className="p-card-body">
                   <div className="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                     <div className="mt-3">
@@ -69,7 +69,7 @@ function Profile() {
                   </div>
                 </div>
               </div>
-              <div className="card mt-3">
+              <div className="profile-card mt-3">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 className="mb-0">
@@ -124,8 +124,8 @@ function Profile() {
               </div>
             </div>
             <div className="col-md-8">
-              <div className="card mb-3">
-                <div className="card-body">
+              <div className="profile-card mb-3">
+                <div className="p-card-body">
                   <div className="row">
                     <div className="col-sm-3">
                       <h6 className="mb-0">Full Name</h6>
@@ -176,7 +176,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      </body> 
+      </div> 
     );
   } else {
     return <Redirect to="/login" />; 

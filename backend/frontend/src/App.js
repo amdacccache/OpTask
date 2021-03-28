@@ -5,7 +5,7 @@ import Project from "./Project/Project";
 import "../node_modules/react-grid-layout/css/styles.css";
 import "../node_modules/react-resizable/css/styles.css";
 import Profile from "./Profile/Profile";
-import Update from "./Update_Profile/Update"
+import UpdateProfile from "./Update_Profile/UpdateProfile"
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,7 +39,7 @@ function App() {
           <Profile />
         </Route>
         <Route exact path="/profile/update">
-          <Update />
+          <UpdateProfile />
         </Route>
         <Route exact path="/">
           {loggedIn ? <Redirect to="/dashboard" /> : <Login />}
