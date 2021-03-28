@@ -64,7 +64,7 @@ function Profile() {
                       <h4>John Doe</h4>
                       <p className="text-secondary mb-1">John Smith</p>
                       <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                      <button class="btn btn-primary" href="/update">Edit Profile</button>
+                      <a class="btn btn-primary" href="/profile/update">Edit Profile</a>
                     </div>
                   </div>
                 </div>

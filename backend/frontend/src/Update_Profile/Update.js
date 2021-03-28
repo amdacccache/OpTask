@@ -1,5 +1,5 @@
 import Navbar from "../Navbar/Navbar";
-import "./Profile.css";
+import "./Update.css";
 import { useEffect, useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 
