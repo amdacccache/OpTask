@@ -1,9 +1,25 @@
 import { useState } from "react";
+import { Redirect } from "react-router-dom";
+import "./Register.css";
+import LogoImage from "../Images/OpTask.png";
 
 const Register = (props) => {
+  let [nameValue, setNameValue] = useState("");
+  let [institutionValue, setInstValue] = useState("");
+  let [jobValue, setJobValue] = useState("");
   let [emailValue, setEmailValue] = useState("");
   let [passwordValue, setPasswordValue] = useState("");
+  let [registerStatus, setRegisterStatus] = useState(false);
 
+  let handleNameChange = (event) => {
+    setNameValue(event.target.value);
+  }
+  let handleInstChange = (event) => {
+    setInstValue(event.target.value);
+  }
+  let handleJobChange = (event) => {
+    setJobValue(event.target.value);
+  }
   let handleEmailChange = (event) => {
     setEmailValue(event.target.value);
   };
@@ -17,55 +33,98 @@ const Register = (props) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        userFullName: nameValue,
+        userInst: institutionValue,
+        userJob: jobValue,
         userEmail: emailValue,
         userPassword: passwordValue,
       }),
     });
     const parsedRes = await res.json();
-    console.log(parsedRes.registered);
+    if (parsedRes.registered) {
+      setRegisterStatus(true);
+    }
   };
-  return (
-    <div className="container">
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address{" "}
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            name="userEmail"
-            id="userEmail"
-            value={emailValue}
-            onChange={handleEmailChange}
-            required
-          />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
+  if (!registerStatus) {
+    return (
+      <main className="form-signin text-center">
+        <img class="mb-4" src={LogoImage} alt="OpTask Logo" width="200" height="200"></img>
+        <h1 className="h3 mb-3 fw-normal">Sign up for OpTask!</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-floating">
+            <input
+              type="name"
+              className="form-control"
+              name="userFullName"
+              id="userFullName"
+              value={nameValue}
+              onChange={handleNameChange}
+              required
+            />
+            <label htmlFor="userFullName">Full Name</label>
           </div>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="userPassword"
-            name="userPassword"
-            value={passwordValue}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-    </div>
-  );
+          <div className="form-floating">
+            <input
+              type="institutionName"
+              className="form-control"
+              name="userInst"
+              id="userInst"
+              value={institutionValue}
+              onChange={handleInstChange}
+              required
+            />
+            <label htmlFor="userInst">Institution/Company</label>
+          </div>
+          <div className="form-floating">
+            <input
+              type="jobName"
+              className="form-control"
+              name="userJob"
+              id="userJob"
+              value={jobValue}
+              onChange={handleJobChange}
+              required
+            />
+            <label htmlFor="userJob">Job Title</label>
+          </div>
+          <div className="form-floating">
+            <input
+              type="email"
+              className="form-control"
+              name="userEmail"
+              id="userEmail"
+              value={emailValue}
+              onChange={handleEmailChange}
+              required
+            />
+            <label htmlFor="userEmail">Email</label>
+            <div id="emailHelp" className="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+          <div className="form-floating">
+            <input
+              type="password"
+              className="form-control"
+              id="userPassword"
+              name="userPassword"
+              value={passwordValue}
+              onChange={handlePasswordChange}
+              required
+            />
+            <label htmlFor="userPassword">Password</label>
+          </div>
+  
+          <button type="submit" className="w-100 btn btn-lg btn-primary">
+            Submit
+          </button>
+        </form>
+      </main>
+    );
+  } else {
+    return <Redirect to="/login" />
+  }
+  
 };
 
 export default Register;
