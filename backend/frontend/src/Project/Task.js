@@ -1,8 +1,32 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 const Task = (props) => {
+  const [editTextAreValue, setTextAreaValue] = useState(props.task.taskText);
   const updateTimelineForm = useRef(null);
   let timelineSelectedValue = "";
+
+  const updateTaskText = async (event) => {
+    event.preventDefault();
+    const result = await fetch("/projects/updatetasktext", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: props.task._id,
+        newText: editTextAreValue,
+      }),
+    });
+    console.log(result);
+    if (result) {
+      document.querySelector(`#editTextModal${props.task._id}`).click();
+      props.taskUpdated();
+      toast.success("Successfully updated task!");
+    } else {
+      toast.error("Couldn't updated task text :(");
+    }
+  };
 
   // this updates the task's state when they select a new timeline status
   const updateTimeline = async (event) => {
@@ -23,15 +47,39 @@ const Task = (props) => {
           .querySelector(`#closeUpdateModalButton${props.task._id}`)
           .click();
         props.taskUpdated();
+        toast.success("Successfully updated task state!");
       }
     } else {
       console.log("successfully caught bad update value");
-      //todo - add a toast to show them that they didn't select something.
+      toast.error("Unsuccessfully updated task state :(");
     }
   };
+
+  // this function haldnes the form changes in updating the status of a task
   const onTimeLineChange = (event) => {
     timelineSelectedValue = event.target.value;
   };
+
+  const deleteTask = async () => {
+    const result = await fetch("/projects/deletetask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        taskId: props.task._id,
+      }),
+    });
+    if (result) {
+      props.taskUpdated();
+      toast.error("Deleted task");
+    }
+  };
+
+  const handleEditTextChange = (event) => {
+    setTextAreaValue(event.target.value);
+  };
+
   return (
     <div>
       <div className="card mt-3 border-dark">
@@ -66,7 +114,11 @@ const Task = (props) => {
                 </svg>
               </button>
               {/* start of edit task description button */}
-              <button className="btn">
+              <button
+                className="btn"
+                data-bs-toggle="modal"
+                data-bs-target={"#editTextModal" + props.task._id}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
@@ -78,7 +130,7 @@ const Task = (props) => {
                 </svg>
               </button>
               {/* start of delete task button */}
-              <button className="btn">
+              <button className="btn" onClick={deleteTask}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
@@ -97,7 +149,7 @@ const Task = (props) => {
       <div
         className="modal fade"
         id={"stateModal" + props.task._id}
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="timelineModalLabel"
         aria-hidden="true"
       >
@@ -181,6 +233,60 @@ const Task = (props) => {
                   </button>
                   <button type="submit" className="btn btn-primary">
                     Update progress
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* start of edit task text modal */}
+      <div
+        className="modal fade"
+        id={"editTextModal" + props.task._id}
+        tabIndex="-1"
+        aria-labelledby="editTextModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="editTextModalLabel">
+                Edit Task
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <form
+                id={"editTaskTextForm" + props.task._id}
+                onSubmit={updateTaskText}
+              >
+                <div className="mb-3">
+                  <label htmlFor="editTextArea" className="col-form-label">
+                    Task:
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id={"editTextArea" + props.task._id}
+                    value={editTextAreValue}
+                    onChange={handleEditTextChange}
+                  />
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" className="btn btn-primary">
+                    Update Task
                   </button>
                 </div>
               </form>

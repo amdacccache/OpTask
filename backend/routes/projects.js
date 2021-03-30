@@ -43,4 +43,20 @@ router.post("/updatetask", async (req, res, next) => {
     res.send({ done: true });
   }
 });
+
+router.post("/updatetasktext", async (req, res, next) => {
+  console.log(req.body);
+  const result = await opDB.updateTaskText(req.body);
+  if (result) {
+    res.send({ done: true });
+  }
+});
+
+router.post("/deletetask", async (req, res, next) => {
+  const taskId = req.body.taskId;
+  const result = await opDB.deleteTask(taskId);
+  if (result) {
+    res.send(result);
+  }
+});
 module.exports = router;

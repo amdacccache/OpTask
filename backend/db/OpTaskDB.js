@@ -144,6 +144,39 @@ function OpTaskDB() {
     console.log("completed update");
     return result;
   };
+
+  opDB.updateTaskText = async (newTaskObject) => {
+    let client;
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    const db = client.db(DB_NAME);
+    const taskCollection = db.collection("tasks");
+    const result = await taskCollection.findOneAndUpdate(
+      {
+        _id: new ObjectId(newTaskObject.id),
+      },
+      {
+        $set: {
+          taskText: newTaskObject.newText,
+        },
+      }
+    );
+    return result;
+  };
+
+  opDB.deleteTask = async (taskId) => {
+    let client;
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    const db = client.db(DB_NAME);
+    const taskCollection = db.collection("tasks");
+    const result = await taskCollection.findOneAndDelete({
+      _id: new ObjectId(taskId),
+    });
+
+    return result;
+  };
+
   return opDB;
 }
 
