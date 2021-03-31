@@ -1,10 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const opDB = require("../db/OpTaskDB");
+
+// get all of the users projects
 router.get("/:id", async (req, res, next) => {
   const projectArray = await opDB.getUserProjects(req.params.id);
   if (projectArray) {
     res.send(projectArray);
+  }
+});
+
+//get a paginated amount of projects to return to the dashboard
+router.get("/:id/page/:pagenumber", async (req, res, next) => {
+  const projectArray = await opDB.getPageProjects(
+    req.params.id,
+    req.params.pagenumber
+  );
+  if (projectArray) {
+    res.send(projectArray);
+  }
+});
+
+router.get("/:id/count", async (req, res, next) => {
+  const projectsCount = await opDB.getUserProjectCount(req.params.id);
+  if (projectsCount) {
+    res.send({ count: projectsCount });
   }
 });
 

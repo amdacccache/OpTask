@@ -73,6 +73,38 @@ function OpTaskDB() {
     return results;
   };
 
+  //this call returns the number of projects a user has
+  opDB.getUserProjectCount = async function (userId) {
+    let client;
+    console.log("Getting number of projects...");
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connecting to OpTask DB...");
+    const db = client.db(DB_NAME);
+    const projectsCollection = db.collection("projects");
+    const results = await projectsCollection.countDocuments({
+      ownerId: userId,
+    });
+    return results;
+  };
+
+  opDB.getPageProjects = async function (userId, page) {
+    let client;
+    console.log("Getting projects...");
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connecting to OpTask DB...");
+    const db = client.db(DB_NAME);
+    const projectsCollection = db.collection("projects");
+    const results = await projectsCollection
+      .find({ ownerId: userId })
+      .skip(page > 0 ? (page - 1) * 10 : 0)
+      .limit(10)
+      .toArray();
+    console.log(results);
+    return results;
+  };
+
   opDB.createProject = async (projectObject) => {
     let client;
     console.log("Creating project...");

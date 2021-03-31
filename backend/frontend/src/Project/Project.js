@@ -4,6 +4,7 @@ import Task from "./Task";
 import "./Project.css";
 import { Redirect, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import Loader from "react-loader-spinner";
 
 const Project = (props) => {
   let loggedIn = useRef(null);
@@ -13,6 +14,7 @@ const Project = (props) => {
   const [tasksData, setTasksData] = useState([]);
   //const [displayTaskForm, setDisplayTaskForm] = useState(false);
   let { projectId } = useParams();
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -22,6 +24,7 @@ const Project = (props) => {
       // uncomment this code for validation implementation
       //setLoggedInUser(parsedResult.user);
       setLoggedIn(loggedIn.current);
+      setIsDataLoading(true);
     }
     fetchData();
   }, []);
@@ -37,6 +40,7 @@ const Project = (props) => {
       const result = await fetch(`/projects/${projectId}/tasks`);
       const parsedResult = await result.json();
       setTasksData(parsedResult);
+      setIsDataLoading(false);
     }
     fetchProject();
     fetchTasks();
@@ -83,18 +87,33 @@ const Project = (props) => {
 
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
               <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ">
+                {isDataLoading && (
+                  <Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                  />
+                )}
                 <h1 className="h2">Project: {projectData.projectName}</h1>
               </div>
               <div className="row">
                 <div className="container taskContainer col-4 border border-danger rounded">
                   <h2>To-Do</h2>
                   <TaskForm projectId={projectId} newTaskAdded={refreshTasks} />
+                  {isDataLoading && (
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                    />
+                  )}
                   {tasksData
                     .filter((task) => {
                       return task.taskState === "todo";
                     })
                     .map((task) => {
-                      //TODO create cards for tasks
                       return (
                         <Task
                           key={task._id}
@@ -106,6 +125,14 @@ const Project = (props) => {
                 </div>
                 <div className="container taskContainer col-4 border border-warning rounded">
                   <h2> In-Progress</h2>
+                  {isDataLoading && (
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                    />
+                  )}
                   {tasksData
                     .filter((task) => {
                       return task.taskState === "inprogress";
@@ -123,6 +150,14 @@ const Project = (props) => {
                 </div>
                 <div className="container taskContainer col-4 border border-success rounded">
                   <h2>Done</h2>
+                  {isDataLoading && (
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                    />
+                  )}
                   {tasksData
                     .filter((task) => {
                       return task.taskState === "done";

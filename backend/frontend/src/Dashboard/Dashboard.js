@@ -3,12 +3,38 @@ import ProjectCard from "./ProjectCard";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
+import Loader from "react-loader-spinner";
+import Pagination from "@material-ui/lab/Pagination";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { toast } from "react-toastify";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+
 function Dashboard() {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
   const [userProjects, setProjectsData] = useState([]);
+  const [isDataLoading, setIsDataLoading] = useState(false);
+  const [projectCount, setProjectCount] = useState(0);
 
+  // pagination handling
+  const classes = useStyles();
+  const [page, setPage] = useState(1);
+  const handlePaginationChange = (event, value) => {
+    setProjectsData([]);
+    setIsDataLoading(true);
+    setPage(value);
+  };
+
+  // function for handling the submission of a new project
   const newProjectSubmit = async (event) => {
     event.preventDefault();
     var formData = new FormData(document.querySelector("#newProjectForm"));
@@ -26,11 +52,17 @@ function Dashboard() {
     });
     if (result) {
       document.querySelector("#closeModalButton").click();
-      const dataResult = await fetch(`/projects/${loggedInUser._id}`, {
-        method: "GET",
-      });
+      toast.success("Successfully added a new project!");
+      const dataResult = await fetch(
+        `/projects/${loggedInUser._id}/page/${page}`,
+        {
+          method: "GET",
+        }
+      );
       const parsedProjectsData = await dataResult.json();
       setProjectsData(parsedProjectsData);
+    } else {
+      toast.error("Couldn't create the new project. Please try again!");
     }
   };
 
@@ -41,36 +73,57 @@ function Dashboard() {
       loggedIn.current = parsedResult.isLoggedIn;
       setLoggedInUser(parsedResult.user);
       setLoggedIn(loggedIn.current);
+      setIsDataLoading(true);
     }
     fetchData();
     var newProjectModal = document.getElementById("newProjectModal");
     newProjectModal.addEventListener("show.bs.modal", function (event) {
-      // Button that triggered the modal
-      //var button = event.relatedTarget;
-      // Extract info from data-bs-* attributes
-      // var recipient = button.getAttribute("data-bs-whatever");
-      // If necessary, you could initiate an AJAX request here
-      // and then do the updating in a callback.
-      //
-      // Update the modal's content.
       var modalTitle = newProjectModal.querySelector(".modal-title");
-      //var modalBodyInput = exampleModal.querySelector(".modal-body input");
-
       modalTitle.textContent = "New Project";
-      //modalBodyInput.value = recipient;
     });
+
+    //cleanup function to remove the event listener
+    return () => {
+      newProjectModal.removeEventListener("show.bs.modal", function (event) {
+        var modalTitle = newProjectModal.querySelector(".modal-title");
+        modalTitle.textContent = "New Project";
+      });
+    };
   }, []);
 
   useEffect(() => {
+    // get the user's project count to implement pagination
+    async function fetchProjectCount() {
+      const projectCountResult = await fetch(
+        `/projects/${loggedInUser._id}/count`,
+        {
+          method: "GET",
+        }
+      );
+      const parsedProjectsData = await projectCountResult.json();
+      console.log(parsedProjectsData.count);
+      setProjectCount(parsedProjectsData.count);
+      setIsDataLoading(false);
+    }
+    fetchProjectCount();
+  }, [loggedInUser._id]);
+
+  // use effect that pulls projects based on the page that was selected
+  useEffect(() => {
     async function fetchProjectData() {
-      const dataResult = await fetch(`/projects/${loggedInUser._id}`, {
-        method: "GET",
-      });
+      const dataResult = await fetch(
+        `/projects/${loggedInUser._id}/page/${page}`,
+        {
+          method: "GET",
+        }
+      );
       const parsedProjectsData = await dataResult.json();
+      console.log(parsedProjectsData);
       setProjectsData(parsedProjectsData);
+      setIsDataLoading(false);
     }
     fetchProjectData();
-  }, [loggedInUser._id]);
+  }, [loggedInUser._id, page]);
 
   if (isLoggedIn) {
     return (
@@ -192,10 +245,20 @@ function Dashboard() {
               <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 className="h2">Dashboard</h1>
               </div>
-              <div class="row row-cols-1 row-cols-md-2 g-4">
+              <div className="row row-cols-1 row-cols-md-2 g-4">
+                {isDataLoading && (
+                  <Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={500}
+                    width={500}
+                    timeout={3000} //3 secs
+                  />
+                )}
                 {userProjects.map((project) => {
                   return (
                     <Link
+                      key={project._id}
                       className="projectLink"
                       to={"/projects/" + project._id}
                     >
@@ -207,6 +270,16 @@ function Dashboard() {
                     </Link>
                   );
                 })}
+              </div>
+              <div className="d-flex justify-content-center">
+                <div className={classes.root}>
+                  <Typography>Page: {page}</Typography>
+                  <Pagination
+                    count={Math.floor(projectCount / 10) + 1}
+                    page={page}
+                    onChange={handlePaginationChange}
+                  />
+                </div>
               </div>
             </main>
           </div>

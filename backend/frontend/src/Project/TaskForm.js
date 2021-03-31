@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+
 const TaskForm = (props) => {
   const [taskTextValue, setTaskText] = useState("");
   const handleChange = (event) => {
@@ -22,6 +24,7 @@ const TaskForm = (props) => {
     if (response) {
       setTaskText("");
       props.newTaskAdded();
+      toast.success("Successfully added in a new task!");
     }
   };
 

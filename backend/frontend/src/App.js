@@ -8,6 +8,8 @@ import Profile from "./Profile/Profile";
 import UpdateProfile from "./Update_Profile/UpdateProfile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 import {
   BrowserRouter as Router,
   Switch,

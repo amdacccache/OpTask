@@ -29,12 +29,15 @@ function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <input
-          className="form-control form-control-dark w-100"
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-        />
+        <form className="w-100" id="navbarSearchForm">
+          <input
+            className="form-control form-control-dark w-100"
+            type="text"
+            placeholder="Search"
+            aria-label="Search"
+            required
+          />
+        </form>
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap">
             <button className="btn nav-link" onClick={handleSignOut}>
