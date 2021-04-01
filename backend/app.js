@@ -11,6 +11,7 @@ const passport = require("passport");
 var indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const projectsRouter = require("./routes/projects");
+const userDataRouter = require("./routes/userData");
 var app = express();
 
 app.use(logger("dev"));
@@ -49,5 +50,6 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/projects", projectsRouter);
+app.use("/userData", userDataRouter);
 
 module.exports = app;

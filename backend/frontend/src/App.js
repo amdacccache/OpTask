@@ -5,7 +5,7 @@ import Project from "./Project/Project";
 import "../node_modules/react-grid-layout/css/styles.css";
 import "../node_modules/react-resizable/css/styles.css";
 import Profile from "./Profile/Profile";
-import UpdateProfile from "./Update_Profile/UpdateProfile"
+import UpdateProfile from "./Profile/UpdateProfile"
 import {
   BrowserRouter as Router,
   Switch,
