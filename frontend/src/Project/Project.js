@@ -76,7 +76,7 @@ const Project = (props) => {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" href="/profile">
+                    <Link className="nav-link" to="/profile">
                       <span data-feather="file"></span>
                       Profile
                     </Link>
