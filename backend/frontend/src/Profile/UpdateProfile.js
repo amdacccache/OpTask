@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./Profile.css";
+import { toast } from "react-toastify";
+import { Redirect } from "react-router";
 
 
 const UpdateProfile = (props) => {
@@ -75,13 +77,16 @@ const UpdateProfile = (props) => {
       body: JSON.stringify(dataToSend),
     });
     const parsedRes = res.json();
-    if (parsedRes.registered) {
+    if (parsedRes.result) {
       setUpdateStatus(true);
-      //console.log(updateStatus);
+      console.log(updateStatus);
+      if (updateStatus) {
+        toast.success("Successfully updated profile!");
+      }
     }
   };
   
-  if (isLoggedIn) {
+  if (isLoggedIn && !updateStatus) {
     return (
       <div className="profile-cont">
         <Navbar />
@@ -206,6 +211,8 @@ const UpdateProfile = (props) => {
         </form>
       </div>
     );
+  } else {
+    return <Redirect to="/profile" />
   }
   
 };
