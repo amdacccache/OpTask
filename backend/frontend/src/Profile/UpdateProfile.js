@@ -4,7 +4,6 @@ import "./Profile.css";
 import { toast } from "react-toastify";
 import { Redirect } from "react-router";
 
-
 const UpdateProfile = (props) => {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
@@ -12,7 +11,7 @@ const UpdateProfile = (props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetch("/auth/isLoggedIn", { method: "GET"});
+      const result = await fetch("/auth/isLoggedIn", { method: "GET" });
       const parsedResult = await result.json();
       loggedIn.current = parsedResult.isLoggedIn;
       setLoggedInUser(parsedResult.user);
@@ -24,7 +23,9 @@ const UpdateProfile = (props) => {
   useEffect(() => {
     async function fetchUserData() {
       if (loggedInUser._id) {
-        const userDataResult = await fetch(`/userData/${loggedInUser._id}`, { method: "GET"});
+        const userDataResult = await fetch(`/userData/${loggedInUser._id}`, {
+          method: "GET",
+        });
         const parsedUserDataResult = await userDataResult.json();
         setNameValue(parsedUserDataResult.fullname);
         setInstValue(parsedUserDataResult.institution);
@@ -46,16 +47,16 @@ const UpdateProfile = (props) => {
 
   let handleNameChange = (event) => {
     setNameValue(event.target.value);
-  }
+  };
   let handleInstChange = (event) => {
     setInstValue(event.target.value);
-  }
+  };
   let handleJobChange = (event) => {
     setJobValue(event.target.value);
-  }
+  };
   let handleLocationChange = (event) => {
     setLocationValue(event.target.value);
-  }
+  };
   let handleEmailChange = (event) => {
     setEmailValue(event.target.value);
   };
@@ -67,8 +68,8 @@ const UpdateProfile = (props) => {
       userJob: jobValue,
       userLocation: locationValue,
       userEmail: emailValue,
-      id: loggedInUser._id
-    }
+      id: loggedInUser._id,
+    };
     //console.log(dataToSend)
 
     const res = await fetch("/userData/updateProfile", {
@@ -76,16 +77,16 @@ const UpdateProfile = (props) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dataToSend),
     });
-    const parsedRes = res.json();
+    const parsedRes = await res.json();
     if (parsedRes.result) {
       setUpdateStatus(true);
       console.log(updateStatus);
-      if (updateStatus) {
-        toast.success("Successfully updated profile!");
-      }
+      toast.success("Successfully updated profile!");
+    } else {
+      toast.error("Couldn't update the profile. Please try again.");
     }
   };
-  
+
   if (isLoggedIn && !updateStatus) {
     return (
       <div className="profile-cont">
@@ -93,128 +94,130 @@ const UpdateProfile = (props) => {
         <nav
           id="sidebarMenu"
           className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
-          >
+        >
           <div className="position-sticky pt-3">
             <ul className="nav flex-column">
               <li className="nav-item">
-                <a
-                  className="nav-link"
-                  aria-current="page"
-                  href="/dashboard"
-                  >
-                <span data-feather="home"></span>
-                Dashboard
+                <a className="nav-link" aria-current="page" href="/dashboard">
+                  <span data-feather="home"></span>
+                  Dashboard
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link active" href="/profile">
-                <span data-feather="file"></span>
-                Profile
+                  <span data-feather="file"></span>
+                  Profile
                 </a>
               </li>
             </ul>
           </div>
         </nav>
-        <form onSubmit={handleSubmit} className="profile-container">
-          <div className="main-body">
-            <div className="row gutters-sm">
-              <div className="col-md-4 mb-3">
-                <div className="profile-card">
-                  <div className="p-card-body">
-                    <div className="d-flex flex-column align-items-center text-center">
-                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
-                      <div className="mt-3">
-                        <button type="submit" className="btn btn-primary">
-                          Save Profile
-                        </button>
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <form onSubmit={handleSubmit} className="profile-container">
+            <div className="main-body">
+              <div className="row gutters-sm">
+                <div className="col-md-4 mb-3">
+                  <div className="profile-card">
+                    <div className="p-card-body">
+                      <div className="d-flex flex-column align-items-center text-center">
+                        <img
+                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                          alt="Admin"
+                          className="rounded-circle"
+                          width="150"
+                        />
+                        <div className="mt-3">
+                          <button type="submit" className="btn btn-primary">
+                            Save Profile
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-8">
-                <div className="profile-card mb-3">
-                  <div className="p-card-body">
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Full Name</h6>
+                <div className="col-md-8">
+                  <div className="profile-card mb-3">
+                    <div className="p-card-body">
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Full Name</h6>
+                        </div>
+                        <input
+                          className="col-sm-9 text-secondary"
+                          value={nameValue}
+                          type="text"
+                          name="fullname"
+                          onChange={handleNameChange}
+                          required
+                        />
                       </div>
-                      <input 
-                        className="col-sm-9 text-secondary"
-                        value={nameValue}
-                        type="text"
-                        name="fullname"
-                        onChange={handleNameChange}
-                        required
-                      />
-                    </div>
-                    <hr/>
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Job</h6>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Job</h6>
+                        </div>
+                        <input
+                          className="col-sm-9 text-secondary"
+                          value={jobValue}
+                          type="text"
+                          name="job"
+                          onChange={handleJobChange}
+                          required
+                        />
                       </div>
-                      <input 
-                        className="col-sm-9 text-secondary"
-                        value={jobValue}
-                        type="text"
-                        name="job"
-                        onChange={handleJobChange}
-                        required
-                      />
-                    </div>
-                    <hr/>
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Institution</h6>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Institution</h6>
+                        </div>
+                        <input
+                          className="col-sm-9 text-secondary"
+                          value={institutionValue}
+                          type="text"
+                          name="institution"
+                          onChange={handleInstChange}
+                          required
+                        />
                       </div>
-                      <input 
-                        className="col-sm-9 text-secondary"
-                        value={institutionValue}
-                        type="text"
-                        name="institution"
-                        onChange={handleInstChange}
-                        required
-                      />
-                    </div>
-                    <hr/>
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Email</h6>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Email</h6>
+                        </div>
+                        <input
+                          className="col-sm-9 text-secondary"
+                          value={emailValue}
+                          type="email"
+                          name="email"
+                          onChange={handleEmailChange}
+                        />
                       </div>
-                      <input 
-                        className="col-sm-9 text-secondary"
-                        value={emailValue}
-                        type="email"
-                        name="email"
-                        onChange={handleEmailChange}
-                      />
-                    </div>
-                    <hr/>
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Location</h6>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Location</h6>
+                        </div>
+                        <input
+                          className="col-sm-9 text-secondary"
+                          value={locationValue}
+                          type="text"
+                          name="location"
+                          onChange={handleLocationChange}
+                          required
+                        />
                       </div>
-                      <input 
-                        className="col-sm-9 text-secondary"
-                        value={locationValue}
-                        type="text"
-                        name="location"
-                        onChange={handleLocationChange}
-                        required
-                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </main>
       </div>
     );
   } else {
-    return <Redirect to="/profile" />
+    return <Redirect to="/profile" />;
   }
-  
 };
 
 export default UpdateProfile;

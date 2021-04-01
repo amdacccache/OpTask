@@ -94,38 +94,44 @@ function Dashboard() {
   useEffect(() => {
     // get the user's project count to implement pagination
     async function fetchProjectCount() {
-      const projectCountResult = await fetch(
-        `/projects/${loggedInUser._id}/count`,
-        {
-          method: "GET",
-        }
-      );
-      const parsedProjectsData = await projectCountResult.json();
-      console.log(parsedProjectsData.count);
-      setProjectCount(parsedProjectsData.count);
-      setIsDataLoading(false);
+      if (loggedInUser) {
+        const projectCountResult = await fetch(
+          `/projects/${loggedInUser._id}/count`,
+          {
+            method: "GET",
+          }
+        );
+        const parsedProjectsData = await projectCountResult.json();
+        console.log(parsedProjectsData.count);
+        setProjectCount(parsedProjectsData.count);
+        setIsDataLoading(false);
+      }
     }
     fetchProjectCount();
-  }, [loggedInUser._id]);
+  }, [loggedInUser]);
 
   // use effect that pulls projects based on the page that was selected
   useEffect(() => {
     async function fetchProjectData() {
-      const dataResult = await fetch(
-        `/projects/${loggedInUser._id}/page/${page}`,
-        {
-          method: "GET",
-        }
-      );
-      const parsedProjectsData = await dataResult.json();
-      console.log(parsedProjectsData);
-      setProjectsData(parsedProjectsData);
-      setIsDataLoading(false);
+      if (loggedInUser) {
+        const dataResult = await fetch(
+          `/projects/${loggedInUser._id}/page/${page}`,
+          {
+            method: "GET",
+          }
+        );
+        const parsedProjectsData = await dataResult.json();
+        console.log(parsedProjectsData);
+        setProjectsData(parsedProjectsData);
+        setIsDataLoading(false);
+      } else {
+        toast.error("Please sign in!");
+      }
     }
     fetchProjectData();
-  }, [loggedInUser._id, page]);
+  }, [loggedInUser, page]);
 
-  if (isLoggedIn) {
+  if (isLoggedIn && loggedInUser) {
     return (
       <div>
         <Navbar />

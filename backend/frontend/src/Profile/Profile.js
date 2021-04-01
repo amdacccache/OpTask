@@ -23,7 +23,9 @@ function Profile() {
   useEffect(() => {
     async function fetchUserData() {
       if (loggedInUser._id) {
-        const userDataResult = await fetch(`/userData/${loggedInUser._id}`, { method: "GET" });
+        const userDataResult = await fetch(`/userData/${loggedInUser._id}`, {
+          method: "GET",
+        });
         const parsedUserDataResult = await userDataResult.json();
         setUserData(parsedUserDataResult);
       }
@@ -42,11 +44,7 @@ function Profile() {
           <div className="position-sticky pt-3">
             <ul className="nav flex-column">
               <li className="nav-item">
-                <a
-                  className="nav-link"
-                  aria-current="page"
-                  href="/dashboard"
-                >
+                <a className="nav-link" aria-current="page" href="/dashboard">
                   <span data-feather="home"></span>
                   Dashboard
                 </a>
@@ -65,80 +63,89 @@ function Profile() {
               </li> */}
             </ul>
           </div>
-        </nav> 
-        <div className="profile-container">
-        <div className="main-body">
-          <div className="row gutters-sm">
-            <div className="col-md-4 mb-3">
-              <div className="profile-card">
-                <div className="p-card-body">
-                  <div className="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
-                    <div className="mt-3">
-                      <a className="btn btn-primary" href="/profile/update">Edit Profile</a>
+        </nav>
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div className="profile-container">
+            <div className="main-body">
+              <div className="row gutters-sm">
+                <div className="col-md-4 mb-3">
+                  <div className="profile-card">
+                    <div className="p-card-body">
+                      <div className="d-flex flex-column align-items-center text-center">
+                        <img
+                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                          alt="Admin"
+                          className="rounded-circle"
+                          width="150"
+                        />
+                        <div className="mt-3">
+                          <a className="btn btn-primary" href="/profile/update">
+                            Edit Profile
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-md-8">
-              <div className="profile-card mb-3">
-                <div className="p-card-body">
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Full Name</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                    {userData.fullname}
-                    </div>
-                  </div>
-                  <hr/>
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Job</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userData.job}
-                    </div>
-                  </div>
-                  <hr/>
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Institution</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userData.institution}
-                    </div>
-                  </div>
-                  <hr/>
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Email</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userData.username}
-                    </div>
-                  </div>
-                  <hr/>
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Location</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {userData.location}
+                <div className="col-md-8">
+                  <div className="profile-card mb-3">
+                    <div className="p-card-body">
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Full Name</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          {userData.fullname}
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Job</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          {userData.job}
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Institution</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          {userData.institution}
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Email</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          {userData.username}
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Location</h6>
+                        </div>
+                        <div className="col-sm-9 text-secondary">
+                          {userData.location}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </main>
       </div>
-      </div> 
     );
   } else {
-    return <Redirect to="/login" />; 
+    return <Redirect to="/login" />;
   }
-};
+}
 
 export default Profile;
