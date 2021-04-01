@@ -1,4 +1,4 @@
-import Navbar from "../Navbar/Navbar";
+import NavbarWSearch from "../Navbar/NavbarWSearch";
 import ProjectCard from "./ProjectCard";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -102,7 +102,6 @@ function Dashboard() {
           }
         );
         const parsedProjectsData = await projectCountResult.json();
-        console.log(parsedProjectsData.count);
         setProjectCount(parsedProjectsData.count);
         setIsDataLoading(false);
       }
@@ -121,7 +120,6 @@ function Dashboard() {
           }
         );
         const parsedProjectsData = await dataResult.json();
-        console.log(parsedProjectsData);
         setProjectsData(parsedProjectsData);
         setIsDataLoading(false);
       } else {
@@ -134,7 +132,7 @@ function Dashboard() {
   if (isLoggedIn && loggedInUser) {
     return (
       <div>
-        <Navbar />
+        <NavbarWSearch />
         <div className="container-fluid">
           <div className="row">
             <nav

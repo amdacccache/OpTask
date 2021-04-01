@@ -109,19 +109,23 @@ const Project = (props) => {
                       width={100}
                     />
                   )}
-                  {tasksData
-                    .filter((task) => {
-                      return task.taskState === "todo";
-                    })
-                    .map((task) => {
-                      return (
-                        <Task
-                          key={task._id}
-                          task={task}
-                          taskUpdated={refreshTasks}
-                        />
-                      );
-                    })}
+                  {tasksData.length ? (
+                    tasksData
+                      .filter((task) => {
+                        return task.taskState === "todo";
+                      })
+                      .map((task) => {
+                        return (
+                          <Task
+                            key={task._id}
+                            task={task}
+                            taskUpdated={refreshTasks}
+                          />
+                        );
+                      })
+                  ) : (
+                    <h4 className="m-3">No tasks yet!</h4>
+                  )}
                 </div>
                 <div className="container taskContainer col-4 border border-warning rounded">
                   <h2> In-Progress</h2>
