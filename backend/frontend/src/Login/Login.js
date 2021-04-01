@@ -40,7 +40,6 @@ const Login = (props) => {
           width="200"
           height="200"
         ></img>
-        <img class="mb-4" src={LogoImage} alt="OpTask Logo" width="200" height="200"></img>
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-floating">

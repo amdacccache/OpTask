@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./Register.css";
 import LogoImage from "../Images/OpTask.png";
 
@@ -7,6 +7,7 @@ const Register = (props) => {
   let [nameValue, setNameValue] = useState("");
   let [institutionValue, setInstValue] = useState("");
   let [jobValue, setJobValue] = useState("");
+  let [locationValue, setLocationValue] = useState("");
   let [emailValue, setEmailValue] = useState("");
   let [passwordValue, setPasswordValue] = useState("");
   let [registerStatus, setRegisterStatus] = useState(false);
@@ -19,6 +20,9 @@ const Register = (props) => {
   }
   let handleJobChange = (event) => {
     setJobValue(event.target.value);
+  }
+  let handleLocationChange = (event) => {
+    setLocationValue(event.target.value);
   }
   let handleEmailChange = (event) => {
     setEmailValue(event.target.value);
@@ -36,6 +40,7 @@ const Register = (props) => {
         userFullName: nameValue,
         userInst: institutionValue,
         userJob: jobValue,
+        userLocation: locationValue,
         userEmail: emailValue,
         userPassword: passwordValue,
       }),
@@ -89,6 +94,18 @@ const Register = (props) => {
           </div>
           <div className="form-floating">
             <input
+              type="location"
+              className="form-control"
+              name="userLocation"
+              id="userLocation"
+              value={locationValue}
+              onChange={handleLocationChange}
+              required
+            />
+            <label htmlFor="userLocation">Location</label>
+          </div>
+          <div className="form-floating">
+            <input
               type="email"
               className="form-control"
               name="userEmail"
@@ -118,6 +135,8 @@ const Register = (props) => {
           <button type="submit" className="w-100 btn btn-lg btn-primary">
             Submit
           </button>
+
+          <Link class="signup-link" to="/login">Already have an account? Sign in here!</Link>
         </form>
       </main>
     );

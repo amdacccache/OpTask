@@ -56,3 +56,14 @@
 .shadow-none {
     box-shadow: none!important;
 }
+
+.nameStyle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button {
+    border-color: transparent;
+    color: transparent;
+    background-color: transparent;
+}

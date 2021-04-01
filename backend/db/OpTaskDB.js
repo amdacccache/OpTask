@@ -209,6 +209,45 @@ function OpTaskDB() {
     return result;
   };
 
+  // // this function gets a user profile
+  // opDB.getProfile = async(userId) => {
+  //   let client;
+  //   console.log("Getting user info...");
+  //   client = new MongoClient(url, { useUnifiedTopology: true });
+  //   await client.connect();
+  //   console.log("Connecting to OpTask DB...");
+  //   const db = client.db(DB_NAME);
+  //   const usersCollection = db.collection("users");
+  //   const results = await usersCollection.findOne(
+  //     {_id: new ObjectId(userId) },
+  //   );
+  //   return results;
+  // };
+
+  // this function updates a user profile
+  opDB.updateUserData = async (userId, profileObj) => {
+    let client;
+    console.log("Getting user info...");
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connecting to OpTask DB...");
+    const db = client.db(DB_NAME);
+    const usersCollection = db.collection("users");
+    const results = await usersCollection.updateOne(
+      {_id: new ObjectId(userId) },
+      {
+        $set: {
+          fullname: profileObj.userFullName,
+          username: profileObj.userEmail,
+          location: profileObj.userLocation,
+          institution: profileObj.userInstitution,
+          job: profileObj.userJob
+        },
+      }
+    );
+    console.log("completed update");
+    return results;
+  };
   return opDB;
 }
 

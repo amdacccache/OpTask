@@ -33,6 +33,7 @@ router.post("/register", (req, res, next) => {
     fullname: req.body.userFullName,
     institution: req.body.userInst,
     job: req.body.userJob,
+    location: req.body.userLocation,
     username: req.body.userEmail,
     hash: hash,
     salt: salt,
