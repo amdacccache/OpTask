@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 function Navbar() {
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -15,9 +15,9 @@ function Navbar() {
   if (loggedIn) {
     return (
       <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">
+        <Link className="navbar-brand col-md-3 col-lg-2 me-0 px-3" to="/">
           OpTask
-        </a>
+        </Link>
         <button
           className="navbar-toggler position-absolute d-md-none collapsed"
           type="button"

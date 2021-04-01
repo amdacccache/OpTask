@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./Profile.css";
 import { toast } from "react-toastify";
-import { Redirect } from "react-router";
+import { Redirect, Link } from "react-router-dom";
 
 const UpdateProfile = (props) => {
   let loggedIn = useRef(null);
@@ -98,16 +98,16 @@ const UpdateProfile = (props) => {
           <div className="position-sticky pt-3">
             <ul className="nav flex-column">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/dashboard">
+                <Link className="nav-link" aria-current="page" to="/dashboard">
                   <span data-feather="home"></span>
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/profile">
+                <Link className="nav-link active" to="/profile">
                   <span data-feather="file"></span>
                   Profile
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

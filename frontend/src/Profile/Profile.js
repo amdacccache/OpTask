@@ -1,7 +1,7 @@
 import Navbar from "../Navbar/Navbar";
 import "./Profile.css";
 import { useEffect, useRef, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 function Profile() {
   let loggedIn = useRef(null);
@@ -44,16 +44,16 @@ function Profile() {
           <div className="position-sticky pt-3">
             <ul className="nav flex-column">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/dashboard">
+                <Link className="nav-link" aria-current="page" to="/dashboard">
                   <span data-feather="home"></span>
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="profile">
+                <Link className="nav-link active" to="profile">
                   <span data-feather="file"></span>
                   Profile
-                </a>
+                </Link>
               </li>
               {/* <li className="nav-item">
                 <button className="btn nav-link">
@@ -79,9 +79,12 @@ function Profile() {
                           width="150"
                         />
                         <div className="mt-3">
-                          <a className="btn btn-primary" href="/profile/update">
+                          <Link
+                            className="btn btn-primary"
+                            to="/profile/update"
+                          >
                             Edit Profile
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>

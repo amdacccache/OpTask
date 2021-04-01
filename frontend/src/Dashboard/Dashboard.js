@@ -144,20 +144,20 @@ function Dashboard() {
               <div className="position-sticky pt-3">
                 <ul className="nav flex-column">
                   <li className="nav-item">
-                    <a
+                    <Link
                       className="nav-link active"
                       aria-current="page"
-                      href="/dashboard"
+                      to="/dashboard"
                     >
                       <span data-feather="home"></span>
                       Dashboard
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/profile">
+                    <Link className="nav-link" to="/profile">
                       <span data-feather="file"></span>
                       Profile
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
                     <button

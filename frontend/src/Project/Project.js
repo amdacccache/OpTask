@@ -2,7 +2,7 @@ import Navbar from "../Navbar/Navbar";
 import TaskForm from "./TaskForm";
 import Task from "./Task";
 import "./Project.css";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Loader from "react-loader-spinner";
 
@@ -66,20 +66,20 @@ const Project = (props) => {
               <div className="position-sticky pt-3">
                 <ul className="nav flex-column">
                   <li className="nav-item">
-                    <a
+                    <Link
                       className="nav-link"
                       aria-current="page"
-                      href="/dashboard"
+                      to="/dashboard"
                     >
                       <span data-feather="home"></span>
                       Dashboard
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/profilePage">
+                    <Link className="nav-link" href="/profile">
                       <span data-feather="file"></span>
                       Profile
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
