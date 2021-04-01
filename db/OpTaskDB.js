@@ -101,7 +101,6 @@ function OpTaskDB() {
       .skip(page > 0 ? (page - 1) * 10 : 0)
       .limit(10)
       .toArray();
-    console.log(results);
     return results;
   };
 
@@ -129,6 +128,45 @@ function OpTaskDB() {
       _id: new ObjectId(projectId),
     });
     return result;
+  };
+
+  opDB.searchAndGetProjects = async (query, userId, page) => {
+    let client;
+    console.log("Searching and retrieving project");
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    console.log("connecting to the db");
+    const db = client.db(DB_NAME);
+    const projectsCollection = db.collection("projects");
+    const result = await projectsCollection
+      .find({
+        ownerId: userId,
+        $text: {
+          $search: query,
+        },
+      })
+      .skip(page > 0 ? (page - 1) * 10 : 0)
+      .limit(10)
+      .toArray();
+    return result;
+  };
+
+  //this call returns the number of projects a user has
+  opDB.getSearchResultCount = async function (query, userId) {
+    let client;
+    console.log("Getting number of projects...");
+    client = new MongoClient(url, { useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connecting to OpTask DB...");
+    const db = client.db(DB_NAME);
+    const projectsCollection = db.collection("projects");
+    const results = await projectsCollection.countDocuments({
+      ownerId: userId,
+      $text: {
+        $search: query,
+      },
+    });
+    return results;
   };
 
   opDB.createTask = async (taskObject) => {
@@ -234,14 +272,14 @@ function OpTaskDB() {
     const db = client.db(DB_NAME);
     const usersCollection = db.collection("users");
     const results = await usersCollection.updateOne(
-      {_id: new ObjectId(userId) },
+      { _id: new ObjectId(userId) },
       {
         $set: {
           fullname: profileObj.userFullName,
           username: profileObj.userEmail,
           location: profileObj.userLocation,
           institution: profileObj.userInstitution,
-          job: profileObj.userJob
+          job: profileObj.userJob,
         },
       }
     );

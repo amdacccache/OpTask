@@ -2,6 +2,7 @@ import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Dashboard from "./Dashboard/Dashboard";
 import Project from "./Project/Project";
+import SearchResultsPage from "./SearchResults/SearchResultsPage";
 import "../node_modules/react-grid-layout/css/styles.css";
 import "../node_modules/react-resizable/css/styles.css";
 import Profile from "./Profile/Profile";
@@ -51,6 +52,11 @@ function App() {
         </Route>
         <Route exact path="/projects/:projectId">
           <Project />
+        </Route>
+        <Route exact path="/search/:query">
+          {({ location }) => {
+            return <SearchResultsPage location={location.pathname} />;
+          }}
         </Route>
       </Switch>
     </Router>
