@@ -3,14 +3,18 @@ import Navbar from "../Navbar/Navbar";
 import "./Profile.css";
 import { toast } from "react-toastify";
 import { Redirect, Link } from "react-router-dom";
+import Loader from "react-loader-spinner";
+import IconImage from "../Images/userIcon.png";
 
-const UpdateProfile = (props) => {
+function UpdateProfile() {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
+      setIsDataLoading(true);
       const result = await fetch("/auth/isLoggedIn", { method: "GET" });
       const parsedResult = await result.json();
       loggedIn.current = parsedResult.isLoggedIn;
@@ -32,6 +36,7 @@ const UpdateProfile = (props) => {
         setJobValue(parsedUserDataResult.job);
         setLocationValue(parsedUserDataResult.location);
         setEmailValue(parsedUserDataResult.username);
+        setIsDataLoading(false);
       }
     }
     fetchUserData();
@@ -115,21 +120,37 @@ const UpdateProfile = (props) => {
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <form onSubmit={handleSubmit} className="profile-container">
             <div className="main-body">
+            {isDataLoading && (
+                  <Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={500}
+                    width={500}
+                    timeout={3000} //3 secs
+                  />
+                )}
+              {!isDataLoading && (
               <div className="row gutters-sm">
                 <div className="col-md-4 mb-3">
                   <div className="profile-card">
                     <div className="p-card-body">
                       <div className="d-flex flex-column align-items-center text-center">
                         <img
-                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                          src={IconImage}
                           alt="Admin"
                           className="rounded-circle"
-                          width="150"
+                          width="120"
                         />
+                        <h4 class="card-title mb-0">{nameValue}</h4>
                         <div className="mt-3">
                           <button type="submit" className="btn btn-primary">
                             Save Profile
                           </button>
+                        </div>
+                        <div className="mt-1">
+                          <Link className="btn btn-primary" id="buttonColor" to="/profile">
+                            Cancel Update
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -209,7 +230,7 @@ const UpdateProfile = (props) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>)}
             </div>
           </form>
         </main>

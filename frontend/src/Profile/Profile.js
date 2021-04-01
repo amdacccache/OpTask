@@ -2,15 +2,19 @@ import Navbar from "../Navbar/Navbar";
 import "./Profile.css";
 import { useEffect, useRef, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import Loader from "react-loader-spinner";
+import IconImage from "../Images/userIcon.png";
 
 function Profile() {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
   const [userData, setUserData] = useState({});
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
+      setIsDataLoading(true);
       const result = await fetch("/auth/isLoggedIn", { method: "GET" });
       const parsedResult = await result.json();
       loggedIn.current = parsedResult.isLoggedIn;
@@ -28,6 +32,7 @@ function Profile() {
         });
         const parsedUserDataResult = await userDataResult.json();
         setUserData(parsedUserDataResult);
+        setIsDataLoading(false);
       }
     }
     fetchUserData();
@@ -55,29 +60,34 @@ function Profile() {
                   Profile
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <button className="btn nav-link">
-                  <span data-feather="bar-chart-2"></span>
-                  Create a new project
-                </button>
-              </li> */}
             </ul>
           </div>
         </nav>
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="profile-container">
             <div className="main-body">
+            {isDataLoading && (
+                  <Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={500}
+                    width={500}
+                    timeout={3000} //3 secs
+                  />
+                )}
+              {!isDataLoading && (
               <div className="row gutters-sm">
                 <div className="col-md-4 mb-3">
                   <div className="profile-card">
                     <div className="p-card-body">
                       <div className="d-flex flex-column align-items-center text-center">
                         <img
-                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                          src={IconImage}
                           alt="Admin"
                           className="rounded-circle"
-                          width="150"
+                          width="120"
                         />
+                        <h4 class="card-title mb-0">{userData.fullname}</h4>
                         <div className="mt-3">
                           <Link
                             className="btn btn-primary"
@@ -140,7 +150,7 @@ function Profile() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>)}
             </div>
           </div>
         </main>
