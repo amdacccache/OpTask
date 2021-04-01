@@ -67,7 +67,7 @@ const UpdateProfile = (props) => {
       userEmail: emailValue,
       id: loggedInUser._id
     }
-    console.log(dataToSend)
+    //console.log(dataToSend)
 
     const res = await fetch("/userData/updateProfile", {
       method: "POST",
@@ -77,7 +77,7 @@ const UpdateProfile = (props) => {
     const parsedRes = res.json();
     if (parsedRes.registered) {
       setUpdateStatus(true);
-      console.log(updateStatus);
+      //console.log(updateStatus);
     }
   };
   
@@ -119,8 +119,8 @@ const UpdateProfile = (props) => {
                     <div className="d-flex flex-column align-items-center text-center">
                       <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
                       <div className="mt-3">
-                        <button type="submit">
-                          <a className="btn btn-primary" href="/profile">Save Profile</a>
+                        <button type="submit" className="btn btn-primary">
+                          Save Profile
                         </button>
                       </div>
                     </div>
