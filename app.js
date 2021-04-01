@@ -54,4 +54,8 @@ app.use("/projects", projectsRouter);
 app.use("/userData", userDataRouter);
 app.use("/searchProjects", searchProjectsRouter);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+});
+
 module.exports = app;
