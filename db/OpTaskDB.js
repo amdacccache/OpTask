@@ -36,6 +36,7 @@ function OpTaskDB() {
       const results = await usersCollections.findOne({
         username: query,
       });
+      console.log("Got user");
       return results;
     } finally {
       client.close();
@@ -55,6 +56,7 @@ function OpTaskDB() {
       const results = await usersCollection.findOne({
         _id: new ObjectId(query),
       });
+      console.log("got user by id");
       return results;
     } finally {
       client.close();
@@ -74,6 +76,7 @@ function OpTaskDB() {
       const results = await projectsCollection
         .find({ ownerId: userId })
         .toArray();
+      console.log("got user's projects");
       return results;
     } finally {
       client.close();
@@ -93,6 +96,7 @@ function OpTaskDB() {
       const results = await projectsCollection.countDocuments({
         ownerId: userId,
       });
+      console.log("got user's project count");
       return results;
     } finally {
       client.close();
@@ -113,6 +117,7 @@ function OpTaskDB() {
         .skip(page > 0 ? (page - 1) * 10 : 0)
         .limit(10)
         .toArray();
+      console.log("got the projects for this page(ination)");
       return results;
     } finally {
       client.close();
@@ -129,6 +134,7 @@ function OpTaskDB() {
       const db = client.db(DB_NAME);
       const projectsCollection = db.collection("projects");
       const result = await projectsCollection.insertOne(projectObject);
+      console.log("created project");
       return result;
     } finally {
       client.close();
@@ -147,6 +153,7 @@ function OpTaskDB() {
       const result = await projectsCollection.findOne({
         _id: new ObjectId(projectId),
       });
+      console.log("got project");
       return result;
     } finally {
       client.close();
@@ -172,6 +179,7 @@ function OpTaskDB() {
         .skip(page > 0 ? (page - 1) * 10 : 0)
         .limit(10)
         .toArray();
+      console.log("searched and got projects");
       return result;
     } finally {
       client.close();
@@ -194,6 +202,7 @@ function OpTaskDB() {
           $search: query,
         },
       });
+      console.log("got search result count");
       return results;
     } finally {
       client.close();
@@ -210,6 +219,7 @@ function OpTaskDB() {
       const db = client.db(DB_NAME);
       const tasksCollection = db.collection("tasks");
       const result = await tasksCollection.insertOne(taskObject);
+      console.log("created task");
       return result;
     } finally {
       client.close();
@@ -228,6 +238,7 @@ function OpTaskDB() {
       const results = await tasksCollection
         .find({ projectId: projectId })
         .toArray();
+      console.log("got tasks");
       return results;
     } finally {
       client.close();
@@ -275,6 +286,7 @@ function OpTaskDB() {
           },
         }
       );
+      console.log("updated task");
       return result;
     } finally {
       client.close();
@@ -291,7 +303,7 @@ function OpTaskDB() {
       const result = await taskCollection.findOneAndDelete({
         _id: new ObjectId(taskId),
       });
-
+      console.log("deleted task");
       return result;
     } finally {
       client.close();

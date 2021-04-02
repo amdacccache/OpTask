@@ -11,7 +11,7 @@ router.post("/updateProfile", async function (req, res) {
   console.log(req.body.id);
   const databaseResult = await opDB.updateUserData(req.body.id, req.body);
   if (databaseResult) {
-    res.send({ result : true });
+    res.send({ result: true });
   }
 });
 

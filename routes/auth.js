@@ -6,7 +6,7 @@ const opDB = require("../db/OpTaskDB");
 
 // handles login requests
 router.post("/login", function (req, res, next) {
-  passport.authenticate("local", function (err, user, info) {
+  passport.authenticate("local", function (err, user) {
     if (err) {
       return next(err);
     }
@@ -23,7 +23,7 @@ router.post("/login", function (req, res, next) {
 });
 
 //handles register requests
-router.post("/register", (req, res, next) => {
+router.post("/register", (req, res) => {
   const saltHash = passwordUtils.generatePassword(req.body.userPassword);
 
   const salt = saltHash.salt;
@@ -41,12 +41,12 @@ router.post("/register", (req, res, next) => {
   res.send({ registered: true });
 });
 
-router.get("/isLoggedIn", (req, res, next) => {
+router.get("/isLoggedIn", (req, res) => {
   const isLoggedIn = req.isAuthenticated();
   res.send({ isLoggedIn: isLoggedIn, user: req.user });
 });
 
-router.get("/logout", (req, res, next) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.send({ logout: true });
 });

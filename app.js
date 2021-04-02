@@ -5,7 +5,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const opDB = require("./db/OpTaskDB");
 const passport = require("passport");
 
 var indexRouter = require("./routes/index");
