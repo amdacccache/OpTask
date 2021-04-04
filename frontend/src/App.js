@@ -10,6 +10,7 @@ import UpdateProfile from "./Profile/UpdateProfile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Landing from "./LandingPage/Landing";
 
 import {
   BrowserRouter as Router,
@@ -47,9 +48,9 @@ function App() {
         <Route exact path="/profile/update">
           <UpdateProfile />
         </Route>
-        <Route exact path="/">
+        {/* <Route exact path="/">
           {loggedIn ? <Redirect to="/dashboard" /> : <Login />}
-        </Route>
+        </Route> */}
         <Route exact path="/projects/:projectId">
           <Project />
         </Route>
@@ -57,6 +58,9 @@ function App() {
           {({ location }) => {
             return <SearchResultsPage location={location.pathname} />;
           }}
+        </Route>
+        <Route exact path="/">
+          <Landing />
         </Route>
       </Switch>
     </Router>
