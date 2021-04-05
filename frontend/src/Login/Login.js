@@ -3,7 +3,7 @@ import { Redirect, Link } from "react-router-dom";
 import "./Login.css";
 import LogoImage from "../Images/OpTask.png";
 
-const Login = (props) => {
+const Login = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
@@ -71,7 +71,9 @@ const Login = (props) => {
             Submit
           </button>
 
-          <Link class="signup-link" to="/register">Don't have an account? Sign up for OpTask!</Link>
+          <Link class="signup-link" to="/register">
+            Don't have an account? Sign up for OpTask!
+          </Link>
         </form>
       </main>
     );
