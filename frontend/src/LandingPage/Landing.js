@@ -10,11 +10,12 @@ import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
-    <body>
+    <div className="pageBody">
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container">
-          <a className="navbar-nav" href="/">
-            <img src={LogoImage} alt="OpTask Logo" />
+          <img src={LogoImage} alt="OpTask Logo" />
+          <a className="navbar-nav linkText" href="/">
+            OpTask
           </a>
           <button
             className="navbar-toggler button-color"
@@ -50,7 +51,7 @@ const Landing = () => {
         <div className="container pt-3">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-5">
-              <h2>Welcome to OpTask!</h2>
+              <h1>Welcome to OpTask!</h1>
               <p>A space where you can easily manage all your project tasks.</p>
               <Link
                 type="button"
@@ -61,7 +62,7 @@ const Landing = () => {
               </Link>
             </div>
             <div className="col-md-5">
-              <img src={CheckIcon} alt="" />
+              <img src={CheckIcon} alt="a man standing before a completed checklist" />
             </div>
             {/* image from: https://www.vecteezy.com/vector-art/2043859-man-completed-checklist */}
           </div>
@@ -79,15 +80,15 @@ const Landing = () => {
           <div className="row g-5 align-items-center justify-content-center">
             {/* Image from: https://www.vecteezy.com/free-vector/project-management*/}
             <div className="col-md-3">
-              <img src={WorkFlow} alt="work flow" className="img-fluid pic1" />
+              <img src={WorkFlow} alt="work flow graphic" className="img-fluid pic1" />
             </div>
             {/* Image from: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.project-management-prepcast.com%2Ffree%2Fpmp-exam%2Farticles%2F1108-online-kanban-tools-a-buyers-guide&psig=AOvVaw21sD2KVkPOXuJVAJgOmkhR&ust=1617667855440000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKC3lMXo5e8CFQAAAAAdAAAAABAD */}
             <div className="col-md-4">
-              <img src={Progress} alt="progress chart" className="img-fluid" />
+              <img src={Progress} alt="black board with to do, in progress, and done columns" className="img-fluid" />
             </div>
             {/* Image from: https://www.vecteezy.com/vector-art/2043827-woman-completes-checklist */}
             <div className="col-md-3">
-              <img src={Complete} alt="" className="img-fluid" />
+              <img src={Complete} alt="woman checking off to do list" className="img-fluid" />
             </div>
           </div>
         </div>
@@ -103,11 +104,11 @@ const Landing = () => {
         <div className="container">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-5">
-              <img src={ComputerWoman} alt="" />
+              <img src={ComputerWoman} alt="woman working at a computer" />
             </div>
             {/* image from: https://www.vecteezy.com/vector-art/227880-female-developer-vector*/}
             <div className="col-md-5">
-              <h1 className="my-3">What can OpTask do?</h1>
+              <h2 className="my-3">What can OpTask do?</h2>
               <p className="my-4">
                 OpTask is reimaging how project management can be done. By
                 streamlining the process and giving you a place to keep track of
@@ -123,39 +124,8 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      {/* <footer className="text-center text-lg-start">
-        <div className="p-4">
-          <div className="row align-items-center">
-            <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
-              <h5 className="text-uppercase">OpTask</h5>
-              <p>© 2021 Copyright: Nabil Arbouz and Anna Daccache</p>
-            </div>
-            <div className="col-lg3 col-md-6 mb-4 mb-md-0">
-              <h5 className="text-uppercase">Links</h5>
-              <ul className="list-unstyled mb-0">
-                <li>
-                  <a
-                    href="https://johnguerra.co/classes/webDevelopment_spring_2021/"
-                    className="text-dark"
-                  >
-                    Course Website
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/amdacccache/novelish.io"
-                    className="text-dark"
-                  >
-                    Github
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer> */}
       <Footer />
-    </body>
+    </div>
   );
 };
 

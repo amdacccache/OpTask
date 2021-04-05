@@ -1,7 +1,13 @@
-body {
+.pageBody {
   height: 100%;
   font-size: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.linkText {
+  text-decoration: none;
+  color: rgb(116, 112, 112);
+  margin-bottom: 10px;
 }
 
 .gradient {
@@ -28,6 +34,6 @@ body {
   list-style-type: upper-roman;
 }
 
-feature ul li:before {
+.feature ul li:before {
   padding-left: 2rem;
 }
