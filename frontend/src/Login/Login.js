@@ -3,7 +3,7 @@ import { Redirect, Link } from "react-router-dom";
 import "./Login.css";
 import LogoImage from "../Images/OpTask.png";
 
-const Login = () => {
+const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
@@ -28,6 +28,7 @@ const Login = () => {
     const parsedRes = await res.json();
     if (parsedRes.loginState) {
       setLoginStatus(true);
+      props.loginPressed();
     }
   };
   if (!loginStatus) {

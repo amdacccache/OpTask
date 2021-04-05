@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Dashboard() {
+function Dashboard(props) {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -130,10 +130,16 @@ function Dashboard() {
     fetchProjectData();
   }, [loggedInUser, page]);
 
+  const logoutPressed = () => {
+    setLoggedIn(false);
+    setLoggedInUser(null);
+    props.logoutPressed();
+  };
+
   if (isLoggedIn && loggedInUser) {
     return (
       <div>
-        <NavbarWSearch />
+        <NavbarWSearch logoutPressed={logoutPressed} />
         <div className="container-fluid">
           <div className="row">
             <nav
@@ -276,7 +282,7 @@ function Dashboard() {
                   );
                 })}
               </div>
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center mt-3">
                 <div className={classes.root}>
                   <Typography>Page: {page}</Typography>
                   <Pagination
@@ -292,7 +298,7 @@ function Dashboard() {
       </div>
     );
   } else {
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   }
 }
 

@@ -1,7 +1,7 @@
 import "./Navbar.css";
 import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
-function NavbarWSearch() {
+function NavbarWSearch(props) {
   const [loggedIn, setLoggedIn] = useState(true);
   const [searchSubmitted, setSearchSubmitted] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -11,6 +11,7 @@ function NavbarWSearch() {
     const parsedResponse = await response.json();
     if (parsedResponse.logout) {
       setLoggedIn(false);
+      props.logoutPressed();
     }
   };
 

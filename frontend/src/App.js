@@ -18,16 +18,26 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  let loggedIn = useRef(null);
+  let [loggedIn, setLoggedIn] = useState(null);
   useEffect(() => {
     async function fetchData() {
-      loggedIn.current = await fetch("/auth/isLoggedIn", { method: "GET" });
+      const result = await fetch("/auth/isLoggedIn", { method: "GET" });
+      const parsedResult = await result.json();
+      setLoggedIn(parsedResult.isLoggedIn);
     }
     fetchData();
   });
+
+  const logoutPressed = () => {
+    setLoggedIn(false);
+  };
+
+  const loginPressed = () => {
+    setLoggedIn(true);
+  };
 
   return (
     <Router>
@@ -37,10 +47,14 @@ function App() {
           <Register />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <Login loginPressed={loginPressed} />
         </Route>
         <Route exact path="/dashboard">
-          <Dashboard />
+          {loggedIn ? (
+            <Dashboard logoutPressed={logoutPressed} />
+          ) : (
+            <Redirect to="/" />
+          )}
         </Route>
         <Route exact path="/profile">
           <Profile />
@@ -48,9 +62,6 @@ function App() {
         <Route exact path="/profile/update">
           <UpdateProfile />
         </Route>
-        {/* <Route exact path="/">
-          {loggedIn ? <Redirect to="/dashboard" /> : <Login />}
-        </Route> */}
         <Route exact path="/projects/:projectId">
           <Project />
         </Route>
@@ -60,7 +71,7 @@ function App() {
           }}
         </Route>
         <Route exact path="/">
-          <Landing />
+          {loggedIn ? <Redirect to="/dashboard" /> : <Landing />}
         </Route>
       </Switch>
     </Router>

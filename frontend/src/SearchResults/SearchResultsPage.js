@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SearchResultsPage(props) {
+function SearchResultsPage() {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -145,7 +145,7 @@ function SearchResultsPage(props) {
                   );
                 })}
               </div>
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center mt-2">
                 <div className={classes.root}>
                   <Typography>Page: {page}</Typography>
                   <Pagination

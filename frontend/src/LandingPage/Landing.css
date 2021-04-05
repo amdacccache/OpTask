@@ -1,33 +1,33 @@
 body {
-    height: 100%;
-    font-size: 1rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 100%;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .gradient {
-    background: rgb(41,71,242);
-    background: linear-gradient(
-        90deg, 
-        rgba(41,71,242,1) 35%,
-        rgba(0,212,255,1) 100%);
+  background: rgb(41, 71, 242);
+  background: linear-gradient(
+    90deg,
+    rgba(41, 71, 242, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 .page-header {
-    margin-top: 4rem;
-    font-size: 1.25rem;
-    color: white;
+  margin-top: 4rem;
+  font-size: 1.25rem;
+  color: white;
 }
 
 .feature {
-    color: white;
+  color: white;
 }
 
 .feature ul {
-    padding-left: 2rem;
-    list-style-type: none;
+  padding-left: 2rem;
+  list-style-type: armenian;
 }
 
 feature ul li:before {
-    padding-left: 2rem;
-    content: '✓';
+  padding-left: 2rem;
 }
