@@ -1,7 +1,6 @@
 import "./Landing.css";
 import LogoImage from "../Images/TinyLogo.png";
 import CheckIcon from "../Images/checklist.png";
-import Project from "../Images/project.png";
 import ComputerWoman from "../Images/computerWoman.png";
 import WorkFlow from "../Images/bookkeeping.png";
 import Progress from "../Images/progressChart.png";
