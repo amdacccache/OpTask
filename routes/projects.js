@@ -10,6 +10,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// get most recent projects for profile page
+router.get("/:id/profile", async (req, res) => {
+  const projectArray = await opDB.getProfileProjects(req.params.id);
+  if (projectArray) {
+    res.send(projectArray);
+  }
+});
+
 //get a paginated amount of projects to return to the dashboard
 router.get("/:id/page/:pagenumber", async (req, res) => {
   const projectArray = await opDB.getPageProjects(

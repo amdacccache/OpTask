@@ -34,13 +34,13 @@ const Login = (props) => {
   if (!loginStatus) {
     return (
       <main className="form-signin text-center">
-        <img
+        <Link to="/"><img
           className="mb-4"
           src={LogoImage}
           alt=""
           width="200"
           height="200"
-        ></img>
+        ></img></Link>
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-floating">

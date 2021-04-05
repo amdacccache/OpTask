@@ -160,6 +160,25 @@ function OpTaskDB() {
     }
   };
 
+  opDB.getProfileProjects = async function (userId) {
+    let client;
+    try {
+      console.log("Getting projects...");
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      console.log("Connecting to OpTask DB...");
+      const db = client.db(DB_NAME);
+      const projectsCollection = db.collection("projects");
+      const results = await projectsCollection
+        .find({ ownerId: userId }).sort({_id:-1}).limit(6)
+        .toArray();
+      console.log("got user's projects");
+      return results;
+    } finally {
+      client.close();
+    }
+  };
+
   opDB.searchAndGetProjects = async (query, userId, page) => {
     let client;
     try {
