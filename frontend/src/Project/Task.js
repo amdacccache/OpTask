@@ -82,10 +82,11 @@ const Task = (props) => {
 
   return (
     <div>
-      <div className="card mt-3 border-dark shadow-lg">
+      <div className="card mt-3 border shadow-lg">
         <div className="card-body">
           <h3>{props.task.taskText}</h3>
-          <div className=" m-2">
+          <hr></hr>
+          <div>
             {/* start of update progress button */}
             <button
               type="button"

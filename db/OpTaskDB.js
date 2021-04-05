@@ -114,8 +114,8 @@ function OpTaskDB() {
       const projectsCollection = db.collection("projects");
       const results = await projectsCollection
         .find({ ownerId: userId })
-        .skip(page > 0 ? (page - 1) * 10 : 0)
-        .limit(10)
+        .skip(page > 0 ? (page - 1) * 14 : 0)
+        .limit(14)
         .toArray();
       console.log("got the projects for this page(ination)");
       return results;

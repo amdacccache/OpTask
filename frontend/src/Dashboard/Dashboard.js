@@ -259,13 +259,14 @@ function Dashboard(props) {
               </div>
               <div className="row row-cols-1 row-cols-md-2 g-4">
                 {isDataLoading && (
-                  <Loader
-                    type="Puff"
-                    color="#00BFFF"
-                    height={500}
-                    width={500}
-                    timeout={3000} //3 secs
-                  />
+                  <div className="container">
+                    <Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={500}
+                      width={500}
+                    />
+                  </div>
                 )}
                 {userProjects.map((project) => {
                   return (
@@ -285,9 +286,9 @@ function Dashboard(props) {
               </div>
               <div className="d-flex justify-content-center mt-3">
                 <div className={classes.root}>
-                  <Typography>Page: {page}</Typography>
+                  <Typography align="center">Page: {page}</Typography>
                   <Pagination
-                    count={Math.floor(projectCount / 10) + 1}
+                    count={Math.floor(projectCount / 14) + 1}
                     page={page}
                     onChange={handlePaginationChange}
                   />
@@ -297,7 +298,7 @@ function Dashboard(props) {
             </main>
           </div>
         </div>
-      </div> 
+      </div>
     );
   } else {
     return <Redirect to="/" />;

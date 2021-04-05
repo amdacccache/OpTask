@@ -29,7 +29,7 @@ const TaskForm = (props) => {
   };
 
   return (
-    <div className="card p-3 border-dark mt-3 shadow-lg">
+    <div className="card p-3 border mt-3 shadow-lg">
       <form onSubmit={createTask}>
         <div className="mb-3">
           <label htmlFor="taskText" className="form-label">

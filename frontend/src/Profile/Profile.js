@@ -67,91 +67,93 @@ function Profile() {
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="profile-container">
             <div className="main-body">
-            {isDataLoading && (
+              {isDataLoading && (
+                <div className="container">
                   <Loader
                     type="Puff"
                     color="#00BFFF"
                     height={500}
                     width={500}
-                    timeout={3000} //3 secs
-                  />
-                )}
+                  />{" "}
+                </div>
+              )}
               {!isDataLoading && (
-              <div className="row gutters-sm">
-                <div className="col-md-4 mb-3">
-                  <div className="profile-card">
-                    <div className="p-card-body">
-                      <div className="d-flex flex-column align-items-center text-center">
-                        <img
-                          src={IconImage}
-                          alt="Admin"
-                          className="rounded-circle"
-                          width="120"
-                        />
-                        <h4 class="card-title mb-0">{userData.fullname}</h4>
-                        <div className="mt-3">
-                          <Link
-                            className="btn btn-primary"
-                            to="/profile/update"
-                          >
-                            Edit Profile
-                          </Link>
+                <div className="row gutters-sm">
+                  <div className="col-md-4 mb-3">
+                    <div className="profile-card">
+                      <div className="p-card-body">
+                        <div className="d-flex flex-column align-items-center text-center">
+                          <img
+                            src={IconImage}
+                            alt="Admin"
+                            className="rounded-circle"
+                            width="120"
+                          />
+                          <h4 class="card-title mb-0">{userData.fullname}</h4>
+                          <div className="mt-3">
+                            <Link
+                              className="btn btn-primary"
+                              to="/profile/update"
+                            >
+                              Edit Profile
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="profile-card mb-3">
+                      <div className="p-card-body">
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Full Name</h6>
+                          </div>
+                          <div className="col-sm-9 text-secondary">
+                            {userData.fullname}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Job</h6>
+                          </div>
+                          <div className="col-sm-9 text-secondary">
+                            {userData.job}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Institution</h6>
+                          </div>
+                          <div className="col-sm-9 text-secondary">
+                            {userData.institution}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Email</h6>
+                          </div>
+                          <div className="col-sm-9 text-secondary">
+                            {userData.username}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Location</h6>
+                          </div>
+                          <div className="col-sm-9 text-secondary">
+                            {userData.location}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-md-8">
-                  <div className="profile-card mb-3">
-                    <div className="p-card-body">
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Full Name</h6>
-                        </div>
-                        <div className="col-sm-9 text-secondary">
-                          {userData.fullname}
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Job</h6>
-                        </div>
-                        <div className="col-sm-9 text-secondary">
-                          {userData.job}
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Institution</h6>
-                        </div>
-                        <div className="col-sm-9 text-secondary">
-                          {userData.institution}
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Email</h6>
-                        </div>
-                        <div className="col-sm-9 text-secondary">
-                          {userData.username}
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Location</h6>
-                        </div>
-                        <div className="col-sm-9 text-secondary">
-                          {userData.location}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>)}
+              )}
             </div>
           </div>
           <Footer />
