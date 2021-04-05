@@ -6,7 +6,7 @@ import { Redirect, useParams, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Loader from "react-loader-spinner";
 
-const Project = (props) => {
+const Project = () => {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   //const [loggedInUser, setLoggedInUser] = useState({});

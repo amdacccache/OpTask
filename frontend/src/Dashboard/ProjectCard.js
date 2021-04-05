@@ -1,4 +1,5 @@
 import "./ProjectCard.css";
+import PropTypes from "prop-types";
 const ProjectCard = (props) => {
   return (
     <div className="col">
@@ -10,6 +11,11 @@ const ProjectCard = (props) => {
       </div>
     </div>
   );
+};
+
+ProjectCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default ProjectCard;
