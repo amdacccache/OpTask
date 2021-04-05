@@ -25,7 +25,7 @@ body {
 
 .feature ul {
   padding-left: 2rem;
-  list-style-type: armenian;
+  list-style-type: upper-roman;
 }
 
 feature ul li:before {

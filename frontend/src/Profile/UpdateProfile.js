@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Redirect, Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import IconImage from "../Images/userIcon.png";
+import Footer from "../Footer/Footer.js";
 
 function UpdateProfile() {
   let loggedIn = useRef(null);
@@ -233,6 +234,7 @@ function UpdateProfile() {
               </div>)}
             </div>
           </form>
+          <Footer />
         </main>
       </div>
     );

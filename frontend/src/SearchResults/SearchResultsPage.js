@@ -7,6 +7,7 @@ import Loader from "react-loader-spinner";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Footer from "../Footer/Footer.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -155,6 +156,7 @@ function SearchResultsPage() {
                   />
                 </div>
               </div>
+              <Footer />
             </main>
           </div>
         </div>

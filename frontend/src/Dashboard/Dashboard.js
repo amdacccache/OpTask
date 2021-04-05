@@ -8,6 +8,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { toast } from "react-toastify";
+import Footer from "../Footer/Footer.js";
 
 //intialize the material ui styles with their hook
 const useStyles = makeStyles((theme) => ({
@@ -292,10 +293,11 @@ function Dashboard(props) {
                   />
                 </div>
               </div>
+              <Footer />
             </main>
           </div>
         </div>
-      </div>
+      </div> 
     );
   } else {
     return <Redirect to="/" />;
