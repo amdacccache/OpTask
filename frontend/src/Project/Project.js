@@ -95,26 +95,62 @@ const Project = () => {
                     width={100}
                   />
                 )}
-                <h1 className="h2">Project: {projectData.projectName}</h1>
+                <h1 className="h2">
+                  Project:<strong> {projectData.projectName}</strong>
+                </h1>
               </div>
               <div className="row">
-                <div className="container taskContainer col-4 border border-danger rounded">
-                  <h2>To-Do</h2>
-                  <TaskForm projectId={projectId} newTaskAdded={refreshTasks} />
-                  {isDataLoading && (
-                    <Loader
-                      type="Puff"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
+                <div className="col-4">
+                  <div class="m-3 shadow-lg border rounded-3 container taskContainer">
+                    <h2 className="mt-2">To-Do</h2>
+                    <TaskForm
+                      projectId={projectId}
+                      newTaskAdded={refreshTasks}
                     />
-                  )}
-                  {tasksData.length ? (
-                    tasksData
+                    {isDataLoading && (
+                      <Loader
+                        type="Puff"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                      />
+                    )}
+                    {tasksData.length ? (
+                      tasksData
+                        .filter((task) => {
+                          return task.taskState === "todo";
+                        })
+                        .map((task) => {
+                          return (
+                            <Task
+                              key={task._id}
+                              task={task}
+                              taskUpdated={refreshTasks}
+                            />
+                          );
+                        })
+                    ) : (
+                      <h4 className="m-3">No tasks yet!</h4>
+                    )}
+                  </div>
+                </div>
+                <div className=" col-4">
+                  <div class="m-3 shadow-lg border rounded-3 container taskContainer">
+                    <h2 className="mt-2"> In-Progress</h2>
+                    {isDataLoading && (
+                      <Loader
+                        type="Puff"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                      />
+                    )}
+                    {tasksData
                       .filter((task) => {
-                        return task.taskState === "todo";
+                        return task.taskState === "inprogress";
                       })
                       .map((task) => {
+                        //TODO create cards for tasks
                         return (
                           <Task
                             key={task._id}
@@ -122,60 +158,35 @@ const Project = () => {
                             taskUpdated={refreshTasks}
                           />
                         );
+                      })}
+                  </div>
+                </div>
+                <div className=" col-4">
+                  <div class="m-3 shadow-lg border rounded-3 container taskContainer">
+                    <h2 className="mt-2">Done</h2>
+                    {isDataLoading && (
+                      <Loader
+                        type="Puff"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                      />
+                    )}
+                    {tasksData
+                      .filter((task) => {
+                        return task.taskState === "done";
                       })
-                  ) : (
-                    <h4 className="m-3">No tasks yet!</h4>
-                  )}
-                </div>
-                <div className="container taskContainer col-4 border border-warning rounded">
-                  <h2> In-Progress</h2>
-                  {isDataLoading && (
-                    <Loader
-                      type="Puff"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                    />
-                  )}
-                  {tasksData
-                    .filter((task) => {
-                      return task.taskState === "inprogress";
-                    })
-                    .map((task) => {
-                      //TODO create cards for tasks
-                      return (
-                        <Task
-                          key={task._id}
-                          task={task}
-                          taskUpdated={refreshTasks}
-                        />
-                      );
-                    })}
-                </div>
-                <div className="container taskContainer col-4 border border-success rounded">
-                  <h2>Done</h2>
-                  {isDataLoading && (
-                    <Loader
-                      type="Puff"
-                      color="#00BFFF"
-                      height={100}
-                      width={100}
-                    />
-                  )}
-                  {tasksData
-                    .filter((task) => {
-                      return task.taskState === "done";
-                    })
-                    .map((task) => {
-                      //TODO create cards for tasks
-                      return (
-                        <Task
-                          key={task._id}
-                          task={task}
-                          taskUpdated={refreshTasks}
-                        />
-                      );
-                    })}
+                      .map((task) => {
+                        //TODO create cards for tasks
+                        return (
+                          <Task
+                            key={task._id}
+                            task={task}
+                            taskUpdated={refreshTasks}
+                          />
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
             </main>
