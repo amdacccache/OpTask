@@ -47,6 +47,7 @@ const Login = (props) => {
             <input
               type="email"
               className="form-control"
+              placeholder="Email Address"
               name="userEmail"
               id="userEmail"
               value={emailValue}
@@ -59,6 +60,7 @@ const Login = (props) => {
             <input
               type="password"
               className="form-control"
+              placeholder="Password"
               id="userPassword"
               name="userPassword"
               value={passwordValue}

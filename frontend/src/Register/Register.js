@@ -53,13 +53,14 @@ const Register = (props) => {
   if (!registerStatus) {
     return (
       <main className="form-signin text-center">
-        <img class="mb-4" src={LogoImage} alt="OpTask Logo" width="200" height="200"></img>
+        <Link to="/"><img className="mb-4" src={LogoImage} alt="OpTask Logo" width="200" height="200"/></Link>
         <h1 className="h3 mb-3 fw-normal">Sign up for OpTask!</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-floating">
             <input
               type="name"
               className="form-control"
+              placeholder="Full Name"
               name="userFullName"
               id="userFullName"
               value={nameValue}
@@ -72,6 +73,7 @@ const Register = (props) => {
             <input
               type="institutionName"
               className="form-control"
+              placeholder="Institution/Company"
               name="userInst"
               id="userInst"
               value={institutionValue}
@@ -84,6 +86,7 @@ const Register = (props) => {
             <input
               type="jobName"
               className="form-control"
+              placeholder="Job"
               name="userJob"
               id="userJob"
               value={jobValue}
@@ -96,6 +99,7 @@ const Register = (props) => {
             <input
               type="location"
               className="form-control"
+              placeholder="Location"
               name="userLocation"
               id="userLocation"
               value={locationValue}
@@ -108,21 +112,23 @@ const Register = (props) => {
             <input
               type="email"
               className="form-control"
+              placeholder="Email Address"
               name="userEmail"
               id="userEmail"
               value={emailValue}
               onChange={handleEmailChange}
               required
             />
-            <label htmlFor="userEmail">Email</label>
-            <div id="emailHelp" className="form-text">
+            <label htmlFor="userEmail">Email Address</label>
+            {/* <div id="emailHelp" className="form-text">
               We'll never share your email with anyone else.
-            </div>
+            </div> */}
           </div>
           <div className="form-floating">
             <input
               type="password"
               className="form-control"
+              placeholder="Password"
               id="userPassword"
               name="userPassword"
               value={passwordValue}
@@ -136,7 +142,7 @@ const Register = (props) => {
             Submit
           </button>
 
-          <Link class="signup-link" to="/login">Already have an account? Sign in here!</Link>
+          <Link className="signup-link" to="/login">Already have an account? Sign in here!</Link>
         </form>
       </main>
     );
