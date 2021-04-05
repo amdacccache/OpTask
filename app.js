@@ -5,7 +5,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const opDB = require("./db/OpTaskDB");
 const passport = require("passport");
 
 var indexRouter = require("./routes/index");
@@ -53,5 +52,9 @@ app.use("/auth", authRouter);
 app.use("/projects", projectsRouter);
 app.use("/userData", userDataRouter);
 app.use("/searchProjects", searchProjectsRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+});
 
 module.exports = app;

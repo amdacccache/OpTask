@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { toast } from "react-toastify";
 
+//intialize the material ui styles with their hook
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > * + *": {
