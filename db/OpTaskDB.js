@@ -160,6 +160,55 @@ function OpTaskDB() {
     }
   };
 
+  opDB.updateProject = async (projectId, newName) => {
+    let client;
+    try {
+      console.log("Updating project");
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      console.log("connecting to the db");
+      const db = client.db(DB_NAME);
+      const projectsCollection = db.collection("projects");
+      const result = await projectsCollection.findOneAndUpdate(
+        {
+          _id: new ObjectId(projectId),
+        },
+        {
+          $set: {
+            projectName: newName,
+          },
+        }
+      );
+      console.log("got project");
+      return result;
+    } finally {
+      client.close();
+    }
+  };
+
+  opDB.deleteProject = async (projectId) => {
+    let client;
+    try {
+      console.log("Deleting project");
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      console.log("connecting to the db");
+      const db = client.db(DB_NAME);
+      const projectsCollection = db.collection("projects");
+      const tasksCollection = db.collection("tasks");
+      const result = await projectsCollection.findOneAndDelete({
+        _id: new ObjectId(projectId),
+      });
+      console.log("deleted project");
+      const result2 = await tasksCollection.deleteMany({
+        projectId: projectId,
+      });
+      return { result, result2 };
+    } finally {
+      client.close();
+    }
+  };
+
   opDB.searchAndGetProjects = async (query, userId, page) => {
     let client;
     try {

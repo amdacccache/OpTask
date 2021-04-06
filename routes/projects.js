@@ -79,4 +79,21 @@ router.post("/deletetask", async (req, res) => {
     res.send(result);
   }
 });
+
+router.post("/updateProject/:id", async (req, res) => {
+  const projectId = req.params.id;
+  const newName = req.body.newName;
+  const result = await opDB.updateProject(projectId, newName);
+  if (result) {
+    res.send({ updated: true });
+  }
+});
+
+router.post("/deleteProject/:id", async (req, res) => {
+  const projectId = req.params.id;
+  const result = await opDB.deleteProject(projectId);
+  if (result) {
+    res.send({ deleted: true });
+  }
+});
 module.exports = router;
