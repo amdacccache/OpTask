@@ -26,6 +26,7 @@ function Dashboard(props) {
   const [userProjects, setProjectsData] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [projectCount, setProjectCount] = useState(0);
+  const [sideBarProjects, setSideBarProjects] = useState([]);
 
   // pagination handling
   const classes = useStyles();
@@ -68,6 +69,7 @@ function Dashboard(props) {
     }
   };
 
+  //use effect for getting the current user and confirming they are logged in.
   useEffect(() => {
     async function fetchData() {
       const result = await fetch("/auth/isLoggedIn", { method: "GET" });
@@ -78,21 +80,9 @@ function Dashboard(props) {
       setIsDataLoading(true);
     }
     fetchData();
-    var newProjectModal = document.getElementById("newProjectModal");
-    newProjectModal.addEventListener("show.bs.modal", function (event) {
-      var modalTitle = newProjectModal.querySelector(".modal-title");
-      modalTitle.textContent = "New Project";
-    });
-
-    //cleanup function to remove the event listener
-    return () => {
-      newProjectModal.removeEventListener("show.bs.modal", function (event) {
-        var modalTitle = newProjectModal.querySelector(".modal-title");
-        modalTitle.textContent = "New Project";
-      });
-    };
   }, []);
 
+  // this use effects will generate the project count to know how many pages the dashboard should have
   useEffect(() => {
     // get the user's project count to implement pagination
     async function fetchProjectCount() {
@@ -111,7 +101,7 @@ function Dashboard(props) {
     fetchProjectCount();
   }, [loggedInUser]);
 
-  // use effect that pulls projects based on the page that was selected
+  // use effect that pulls projects based on the page that is selected
   useEffect(() => {
     async function fetchProjectData() {
       if (loggedInUser) {
@@ -131,12 +121,27 @@ function Dashboard(props) {
     fetchProjectData();
   }, [loggedInUser, page]);
 
+  // use effect that pulls the 5 most recently created projects for the user if they exist
+  useEffect(() => {
+    async function getRecentProjects() {
+      if (loggedInUser) {
+        // we are reusing the profile projects card because it also generates the most recent 5 projects.
+        const rawData = await fetch(`/projects/${loggedInUser._id}/profile`);
+        const parsedRecentProjects = await rawData.json();
+        setSideBarProjects(parsedRecentProjects);
+      }
+    }
+    getRecentProjects();
+  }, [loggedInUser]);
+
+  // this handles the logoutbutton pressing and we call the props.logoutpressed too to let the main App component know the state has changed.
   const logoutPressed = () => {
     setLoggedIn(false);
     setLoggedInUser(null);
     props.logoutPressed();
   };
 
+  // if the user is logged in and we have access to the user object, we will render the normal dashboard view, if not, we will redirect them.
   if (isLoggedIn && loggedInUser) {
     return (
       <div>
@@ -155,13 +160,43 @@ function Dashboard(props) {
                       aria-current="page"
                       to="/dashboard"
                     >
-                      <span data-feather="home"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-home"
+                      >
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                      </svg>
                       Dashboard
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/profile">
-                      <span data-feather="file"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-users"
+                      >
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
                       Profile
                     </Link>
                   </li>
@@ -172,10 +207,44 @@ function Dashboard(props) {
                       data-bs-target="#newProjectModal"
                       data-bs-whatever="@mdo"
                     >
-                      <span data-feather="bar-chart-2"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-plus-circle"
+                      >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                      </svg>
                       Create a new project
                     </button>
                   </li>
+                </ul>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                  <span>Recent Projects</span>
+                </h6>
+                <ul className="nav flex-column mb-2">
+                  {!isDataLoading &&
+                    sideBarProjects.map((project) => {
+                      return (
+                        <li>
+                          <Link
+                            key={project._id}
+                            className="projectLink nav-link"
+                            to={"/projects/" + project._id}
+                          >
+                            {project.projectName}
+                          </Link>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </nav>

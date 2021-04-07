@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import "./Register.css";
 import LogoImage from "../Images/OpTask.png";
+import { toast } from "react-toastify";
 
 const Register = (props) => {
   let [nameValue, setNameValue] = useState("");
@@ -14,16 +15,16 @@ const Register = (props) => {
 
   let handleNameChange = (event) => {
     setNameValue(event.target.value);
-  }
+  };
   let handleInstChange = (event) => {
     setInstValue(event.target.value);
-  }
+  };
   let handleJobChange = (event) => {
     setJobValue(event.target.value);
-  }
+  };
   let handleLocationChange = (event) => {
     setLocationValue(event.target.value);
-  }
+  };
   let handleEmailChange = (event) => {
     setEmailValue(event.target.value);
   };
@@ -47,13 +48,24 @@ const Register = (props) => {
     });
     const parsedRes = await res.json();
     if (parsedRes.registered) {
+      toast.success("Successfully created account.");
       setRegisterStatus(true);
+    } else {
+      toast.error("Unable to register. Please try again.");
     }
   };
   if (!registerStatus) {
     return (
       <main className="form-signin text-center">
-        <Link to="/"><img className="mb-4" src={LogoImage} alt="OpTask Logo" width="200" height="200"/></Link>
+        <Link to="/">
+          <img
+            className="mb-4"
+            src={LogoImage}
+            alt="OpTask Logo"
+            width="200"
+            height="200"
+          />
+        </Link>
         <h1 className="h3 mb-3 fw-normal">Sign up for OpTask!</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-floating">
@@ -137,19 +149,20 @@ const Register = (props) => {
             />
             <label htmlFor="userPassword">Password</label>
           </div>
-  
+
           <button type="submit" className="w-100 btn btn-lg btn-primary">
             Submit
           </button>
 
-          <Link className="signup-link" to="/login">Already have an account? Sign in here!</Link>
+          <Link className="signup-link" to="/login">
+            Already have an account? Sign in here!
+          </Link>
         </form>
       </main>
     );
   } else {
-    return <Redirect to="/login" />
+    return <Redirect to="/login" />;
   }
-  
 };
 
 export default Register;
