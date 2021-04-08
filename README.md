@@ -3,7 +3,11 @@
 
 By [Nabil Arbouz](http://github.com/nabilarbouz) and [Anna Daccache](https://github.com/amdacccache)
 
+<<<<<<< HEAD
 Web application for project 3 in [CS5610 Web Development](https://johnguerra.co/classes/webDevelopment_spring_2021/). The goal was to build a web application that demonstrated our ability to incorporate MongoDB, Express, React, and Node.js. Our project is a project management site where users can create new projects, add tasks, and update their progress as the work. You can find our site [here](http://optimaltask.herokuapp.com/). A video demo can be found [here](link not yes included).
+=======
+Web application for project 3 in [CS5610 Web Development](https://johnguerra.co/classes/webDevelopment_spring_2021/). The goal was to build a web application that demonstrated our ability to incorporate MongoDB, Express, React, and Node.js. Our project is a project management site where users can create new projects, add tasks, and update their progress as the work. You can find our site here(http://optimaltask.herokuapp.com/). A video demo can be found here(link not yes included).
+>>>>>>> 85fff24dda3df91ae3dfdf7f70502c41d8211506
 
 
 ## Screenshots
