@@ -70,11 +70,11 @@ const Login = (props) => {
             <label htmlFor="userPassword">Password</label>
           </div>
 
-          <button type="submit" className="w-100 btn btn-lg btn-primary">
-            Submit
+          <button type="submit" className="w-100 btn btn-lg submitBtn">
+            Log In
           </button>
 
-          <Link class="signup-link" to="/register">
+          <Link className="signup-link" to="/register">
             Don't have an account? Sign up for OpTask!
           </Link>
         </form>

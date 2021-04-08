@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
+import "./Task.css";
 
 const Task = (props) => {
   const [editTextAreValue, setTextAreaValue] = useState(props.task.taskText);
@@ -224,13 +225,13 @@ const Task = (props) => {
                 <div className="modal-footer mt-2">
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btnClose"
                     data-bs-dismiss="modal"
                     id={"closeUpdateModalButton" + props.task._id}
                   >
                     Close
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btnUpdate">
                     Update progress
                   </button>
                 </div>
@@ -279,12 +280,12 @@ const Task = (props) => {
                 <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btnClose"
                     data-bs-dismiss="modal"
                   >
                     Close
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btnUpdate">
                     Update Task
                   </button>
                 </div>

@@ -144,12 +144,12 @@ function UpdateProfile() {
                         />
                         <h4 class="card-title mb-0">{nameValue}</h4>
                         <div className="mt-3">
-                          <button type="submit" className="btn btn-primary">
+                          <button type="submit" className="btn editBtn">
                             Save Profile
                           </button>
                         </div>
                         <div className="mt-1">
-                          <Link className="btn btn-primary" id="buttonColor" to="/profile">
+                          <Link className="btn btnCancel" id="buttonColor" to="/profile">
                             Cancel Update
                           </Link>
                         </div>
@@ -232,7 +232,7 @@ function UpdateProfile() {
                   </div>
                 </div>
               </div>)}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2947f2" fill-opacity="1" d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#97caef" fill-opacity="1" d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
             </div>
           </form>
           <Footer />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import "./TaskForm.css"
 
 const TaskForm = (props) => {
   const [taskTextValue, setTaskText] = useState("");
@@ -45,7 +46,7 @@ const TaskForm = (props) => {
             required
           />
         </div>
-        <button className="btn btn-primary" type="submit">
+        <button className="btn addBtn" type="submit">
           Add task
         </button>
       </form>

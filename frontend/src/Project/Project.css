@@ -2,3 +2,11 @@
   height: 85vh;
   overflow: auto;
 }
+
+.updateBtn:hover {
+  color: #55bcc9;
+}
+
+.projTitle {
+  color:  #55bcc9;
+}

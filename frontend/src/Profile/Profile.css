@@ -65,3 +65,24 @@
   background-color: red;
   border: transparent;
 }
+
+.editBtn {
+  background-color: #55bcc9;
+  color: white;
+}
+
+.editBtn:hover {
+  background-color: #97caef; 
+  /* #3feee6 */
+  color: #fc4445;
+}
+
+.btnCancel {
+  background-color: #fc4445;
+  color: white;
+}
+
+.btnCancel:hover {
+  color: #97caef; 
+  background-color: #fc4445;
+}

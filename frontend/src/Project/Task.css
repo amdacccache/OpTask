@@ -1,0 +1,19 @@
+.btnUpdate {
+    background-color: #55bcc9;
+    color: white;
+}
+
+.btnUpdate:hover {
+    background-color: #97caef;
+    color: #fc4445;
+}
+
+.btnClose {
+    background-color: #fc4445;
+    color: white; 
+}
+
+.btnClose:hover {
+    background-color: #97caef; 
+    color: #fc4445;
+}

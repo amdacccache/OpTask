@@ -24,4 +24,15 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
+  .submitBtn {
+    background-color: #55bcc9;
+    color: white;
+  }
+  
+  .submitBtn:hover {
+    background-color: #97caef; 
+    /* #3feee6 */
+    color: #fc4445;
+  }
   

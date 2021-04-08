@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { toast } from "react-toastify";
 import Footer from "../Footer/Footer.js";
+import "./Dashboard.css"
 
 //intialize the material ui styles with their hook
 const useStyles = makeStyles((theme) => ({
@@ -255,7 +256,7 @@ function Dashboard(props) {
 
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
               <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 className="h2">Dashboard</h1>
+                <h1 className="h2 dashTitle">Dashboard</h1>
               </div>
               <div className="row row-cols-1 row-cols-md-2 g-4">
                 {isDataLoading && (

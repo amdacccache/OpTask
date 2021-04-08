@@ -14,9 +14,9 @@ const Landing = () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container">
           <img src={LogoImage} alt="OpTask Logo" />
-          <a className="navbar-nav linkText" href="/">
+          <h3 className="navbar-nav linkText" href="/">
             OpTask
-          </a>
+          </h3>
           <button
             className="navbar-toggler button-color"
             type="button"
@@ -55,7 +55,7 @@ const Landing = () => {
               <p>A space where you can easily manage all your project tasks.</p>
               <Link
                 type="button"
-                className="btn btn-outline-info btn-lg"
+                className="btn btn-outline-info btn-lg signUpBtn"
                 to="/register"
               >
                 Sign Up

@@ -11,12 +11,30 @@
 }
 
 .gradient {
-  background: rgb(41, 71, 242);
+  /* background: rgb(41, 71, 242);
   background: linear-gradient(
     90deg,
     rgba(41, 71, 242, 1) 35%,
     rgba(0, 212, 255, 1) 100%
-  );
+  ); */
+  background: rgb(63,238,230);
+  background: linear-gradient(
+    90deg, 
+    rgba(63,238,230,1) 0%, 
+    rgba(85,188,201,1) 50%,
+    rgba(151,202,239,1) 100%);
+}
+
+.signUpBtn {
+  border-color: white;
+  color: white;
+}
+
+.signUpBtn:hover {
+  background-color: #97caef; 
+  /* #3feee6 */
+  color: #fc4445;
+  border-color: #fc4445;
 }
 
 .page-header {

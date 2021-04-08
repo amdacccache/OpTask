@@ -138,8 +138,8 @@ const Register = (props) => {
             <label htmlFor="userPassword">Password</label>
           </div>
   
-          <button type="submit" className="w-100 btn btn-lg btn-primary">
-            Submit
+          <button type="submit" className="w-100 btn btn-lg submitBtn">
+            Sign Up
           </button>
 
           <Link className="signup-link" to="/login">Already have an account? Sign in here!</Link>
