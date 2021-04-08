@@ -42,6 +42,7 @@ function Profile() {
     fetchUserData();
   }, [loggedInUser._id]);
 
+  // this use effect will generate the 5 most recent projects of the user
   useEffect(() => {
     async function fetchProjectData() {
       if (loggedInUser) {
@@ -72,13 +73,43 @@ function Profile() {
             <ul className="nav flex-column">
               <li className="nav-item">
                 <Link className="nav-link" aria-current="page" to="/dashboard">
-                  <span data-feather="home"></span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-home"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
                   Dashboard
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" to="profile">
-                  <span data-feather="file"></span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-users"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
                   Profile
                 </Link>
               </li>
@@ -177,23 +208,30 @@ function Profile() {
                 </div>
               )}
               <div className="row row-cols-1 row-cols-md-2 g-4 mb-3">
-                {!isDataLoading && userProjects.map((project) => {
-                  return (
-                    <Link
-                      key={project._id}
-                      className="projectLink"
-                      to={"/projects/" + project._id}
-                    >
-                      <ProjectCard
+                {!isDataLoading &&
+                  userProjects.map((project) => {
+                    return (
+                      <Link
                         key={project._id}
-                        name={project.projectName}
-                        description={project.projectDescription}
-                      />
-                    </Link>
-                  );
-                })}
+                        className="projectLink"
+                        to={"/projects/" + project._id}
+                      >
+                        <ProjectCard
+                          key={project._id}
+                          name={project.projectName}
+                          description={project.projectDescription}
+                        />
+                      </Link>
+                    );
+                  })}
               </div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#97caef" fill-opacity="1" d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path
+                  fill="#97caef"
+                  fill-opacity="1"
+                  d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                ></path>
+              </svg>
             </div>
           </div>
           <Footer />

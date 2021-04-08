@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import "./Login.css";
 import LogoImage from "../Images/OpTask.png";
+import { toast } from "react-toastify";
 
 const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
@@ -28,19 +29,24 @@ const Login = (props) => {
     const parsedRes = await res.json();
     if (parsedRes.loginState) {
       setLoginStatus(true);
+      toast.success("Successful Login.");
       props.loginPressed();
+    } else {
+      toast.error("Incorrect email or password. Please try again.");
     }
   };
   if (!loginStatus) {
     return (
       <main className="form-signin text-center">
-        <Link to="/"><img
-          className="mb-4"
-          src={LogoImage}
-          alt=""
-          width="200"
-          height="200"
-        ></img></Link>
+        <Link to="/">
+          <img
+            className="mb-4"
+            src={LogoImage}
+            alt=""
+            width="200"
+            height="200"
+          ></img>
+        </Link>
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-floating">
