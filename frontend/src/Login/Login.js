@@ -3,6 +3,7 @@ import { Redirect, Link } from "react-router-dom";
 import "./Login.css";
 import LogoImage from "../Images/OpTask.png";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
@@ -89,6 +90,10 @@ const Login = (props) => {
   } else {
     return <Redirect to="/dashboard" />;
   }
+};
+
+Login.propTypes = {
+  loginPressed: PropTypes.func.isRequired,
 };
 
 export default Login;

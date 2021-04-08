@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 function NavbarWSearch(props) {
   const [loggedIn, setLoggedIn] = useState(true);
   const [searchSubmitted, setSearchSubmitted] = useState(false);
@@ -71,5 +72,9 @@ function NavbarWSearch(props) {
     return <Redirect to={"/login"} />;
   }
 }
+
+NavbarWSearch.propTypes = {
+  logoutPressed: PropTypes.func.isRequired,
+};
 
 export default NavbarWSearch;
