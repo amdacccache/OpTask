@@ -14,7 +14,9 @@ Web application for project 3 in [CS5610 Web Development](https://johnguerra.co/
 
 ![Profile Page](/frontend/src/Images/profile.png)
 
-![Sign Up Page](/frontend/src/Images/register.png) ![Login Page](/frontend/src/Images/login.png)
+![Sign Up Page](/frontend/src/Images/register.png) 
+
+![Login Page](/frontend/src/Images/login.png)
 
 ## How to Start
 
