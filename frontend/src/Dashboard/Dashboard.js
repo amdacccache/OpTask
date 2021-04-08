@@ -157,7 +157,7 @@ function Dashboard(props) {
                 <ul className="nav flex-column">
                   <li className="nav-item">
                     <Link
-                      className="nav-link active"
+                      className="nav-link activeSide"
                       aria-current="page"
                       to="/dashboard"
                     >
@@ -332,7 +332,7 @@ function Dashboard(props) {
                   <div className="container">
                     <Loader
                       type="Puff"
-                      color="#00BFFF"
+                      color="#3feee6"
                       height={500}
                       width={500}
                     />

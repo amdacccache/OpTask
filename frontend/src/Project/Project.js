@@ -166,7 +166,7 @@ const Project = () => {
                 {isDataLoading && (
                   <Loader
                     type="Puff"
-                    color="#00BFFF"
+                    color="#3feee6"
                     height={100}
                     width={100}
                   />
@@ -220,7 +220,7 @@ const Project = () => {
                     {isDataLoading && (
                       <Loader
                         type="Puff"
-                        color="#00BFFF"
+                        color="#3feee6"
                         height={100}
                         width={100}
                       />
@@ -250,7 +250,7 @@ const Project = () => {
                     {isDataLoading && (
                       <Loader
                         type="Puff"
-                        color="#00BFFF"
+                        color="#3feee6"
                         height={100}
                         width={100}
                       />
@@ -276,7 +276,7 @@ const Project = () => {
                     {isDataLoading && (
                       <Loader
                         type="Puff"
-                        color="#00BFFF"
+                        color="#3feee6"
                         height={100}
                         width={100}
                       />

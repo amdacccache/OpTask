@@ -124,7 +124,7 @@ function UpdateProfile() {
             {isDataLoading && (
                   <Loader
                     type="Puff"
-                    color="#00BFFF"
+                    color="#3feee6"
                     height={500}
                     width={500}
                     timeout={3000} //3 secs
