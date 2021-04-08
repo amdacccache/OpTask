@@ -179,7 +179,7 @@ const Project = () => {
                   </div>
                   <div className="col-1">
                     <button
-                      className="btn updateBtn"
+                      className="btn"
                       data-bs-toggle="modal"
                       data-bs-target="#editProjectModal"
                     >
@@ -194,7 +194,7 @@ const Project = () => {
                         <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
                       </svg>
                     </button>
-                    <button className="btn btnDelete" onClick={deleteProject}>
+                    <button className="btn" onClick={deleteProject}>
                       {/* delete button */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -339,7 +339,7 @@ const Project = () => {
                 <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btnClose"
                     data-bs-dismiss="modal"
                     id="closeUpdateModalButton"
                   >
@@ -347,7 +347,7 @@ const Project = () => {
                   </button>
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btnUpdate"
                     onClick={updateProject}
                   >
                     Edit project

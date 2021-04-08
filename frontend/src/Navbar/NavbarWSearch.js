@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import TinyLogo from "../Images/TinyLogo.png";
+import NavLogo from "../Images/NavLogo.png";
 
 function NavbarWSearch(props) {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -30,9 +30,9 @@ function NavbarWSearch(props) {
   if (loggedIn && !searchSubmitted) {
     return (
       <header className="navbar navbar-light sticky-top nav-bg flex-md-nowrap p-0 shadow">
-        <img src={TinyLogo} alt="OpTask Logo" />
 
         <Link className="navbar-brand col-md-3 col-lg-2 me-0 px-3" to="/">
+        <img src={NavLogo} alt="OpTask Logo" className="me-1"/>
           OpTask
         </Link>
         <button
@@ -47,7 +47,7 @@ function NavbarWSearch(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <form
-          className="w-100"
+          className="w-100 ms-2"
           id="navbarSearchForm"
           onSubmit={handleSearchSubmit}
           value={searchValue}
