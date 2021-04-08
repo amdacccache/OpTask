@@ -305,13 +305,13 @@ function Dashboard(props) {
                       <div className="modal-footer">
                         <button
                           type="button"
-                          className="btn btn-secondary"
+                          className="btn btnClose"
                           data-bs-dismiss="modal"
                           id="closeModalButton"
                         >
                           Close
                         </button>
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn createBtn">
                           Create Project
                         </button>
                       </div>

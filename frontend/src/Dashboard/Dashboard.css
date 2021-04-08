@@ -52,7 +52,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+  color: #55bcc9;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -101,4 +101,25 @@ body {
 
 .dashTitle {
   color:  #55bcc9;
+}
+
+.createBtn {
+  background-color: #55bcc9;
+  color: white;
+}
+
+.createBtn:hover {
+  background-color: #97caef; 
+  /* #3feee6 */
+  color: #fc4445;
+}
+
+.btnClose {
+  background-color: #fc4445;
+  color: white; 
+}
+
+.btnClose:hover {
+  background-color: #97caef; 
+  color: #fc4445;
 }
