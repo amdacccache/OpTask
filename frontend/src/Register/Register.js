@@ -4,7 +4,7 @@ import "./Register.css";
 import LogoImage from "../Images/OpTask.png";
 import { toast } from "react-toastify";
 
-const Register = (props) => {
+const Register = () => {
   let [nameValue, setNameValue] = useState("");
   let [institutionValue, setInstValue] = useState("");
   let [jobValue, setJobValue] = useState("");

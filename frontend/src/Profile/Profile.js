@@ -80,10 +80,10 @@ function Profile() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-home"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-home"
                   >
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -100,10 +100,10 @@ function Profile() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-users"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-users"
                   >
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                     <circle cx="9" cy="7" r="4"></circle>
@@ -141,7 +141,9 @@ function Profile() {
                             className="rounded-circle"
                             width="120"
                           />
-                          <h4 class="card-title mb-0">{userData.fullname}</h4>
+                          <h4 className="card-title mb-0">
+                            {userData.fullname}
+                          </h4>
                           <div className="mt-3">
                             <Link
                               className="btn btn-primary"
@@ -204,7 +206,7 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-                  <h3 class="mt-4" style={{ color: "#2947f2" }}>
+                  <h3 className="mt-4" style={{ color: "#2947f2" }}>
                     Most Recent Projects
                   </h3>
                 </div>
@@ -230,7 +232,7 @@ function Profile() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path
                   fill="#2947f2"
-                  fill-opacity="1"
+                  fillOpacity="1"
                   d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                 ></path>
               </svg>

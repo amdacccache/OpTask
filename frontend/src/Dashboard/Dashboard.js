@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { toast } from "react-toastify";
 import Footer from "../Footer/Footer.js";
+import PropTypes from "prop-types";
 
 //intialize the material ui styles with their hook
 const useStyles = makeStyles((theme) => ({
@@ -167,10 +168,10 @@ function Dashboard(props) {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-home"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-home"
                       >
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -187,10 +188,10 @@ function Dashboard(props) {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-users"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-users"
                       >
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                         <circle cx="9" cy="7" r="4"></circle>
@@ -214,10 +215,10 @@ function Dashboard(props) {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-plus-circle"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-plus-circle"
                       >
                         <circle cx="12" cy="12" r="10"></circle>
                         <line x1="12" y1="8" x2="12" y2="16"></line>
@@ -227,14 +228,14 @@ function Dashboard(props) {
                     </button>
                   </li>
                 </ul>
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                   <span>Recent Projects</span>
                 </h6>
                 <ul className="nav flex-column mb-2">
                   {!isDataLoading &&
                     sideBarProjects.map((project) => {
                       return (
-                        <li>
+                        <li key={project._id}>
                           <Link
                             key={project._id}
                             className="projectLink nav-link"
@@ -373,5 +374,9 @@ function Dashboard(props) {
     return <Redirect to="/" />;
   }
 }
+
+Dashboard.propTypes = {
+  logoutPressed: PropTypes.func.isRequired,
+};
 
 export default Dashboard;

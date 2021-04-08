@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 const Task = (props) => {
   const [editTextAreValue, setTextAreaValue] = useState(props.task.taskText);
@@ -295,6 +296,14 @@ const Task = (props) => {
       </div>
     </div>
   );
+};
+
+Task.propTypes = {
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    taskText: PropTypes.string.isRequired,
+  }),
+  taskUpdated: PropTypes.func.isRequired,
 };
 
 export default Task;
