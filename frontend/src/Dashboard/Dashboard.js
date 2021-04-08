@@ -158,7 +158,7 @@ function Dashboard(props) {
                 <ul className="nav flex-column">
                   <li className="nav-item">
                     <Link
-                      className="nav-link activeSide"
+                      className="nav-link active"
                       aria-current="page"
                       to="/dashboard"
                     >
