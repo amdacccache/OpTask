@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import TinyLogo from "../Images/TinyLogo.png";
 function Navbar() {
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -14,7 +15,8 @@ function Navbar() {
 
   if (loggedIn) {
     return (
-      <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <header className="navbar navbar-light sticky-top nav-bg flex-md-nowrap p-0 shadow">
+        <img src={TinyLogo} alt="OpTask Logo" />
         <Link className="navbar-brand col-md-3 col-lg-2 me-0 px-3" to="/">
           OpTask
         </Link>

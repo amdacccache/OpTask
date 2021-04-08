@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import "./TaskForm.css"
+import "./TaskForm.css";
 
 const TaskForm = (props) => {
   const [taskTextValue, setTaskText] = useState("");
@@ -30,7 +30,7 @@ const TaskForm = (props) => {
   };
 
   return (
-    <div className="card p-3 border mt-3 shadow-lg">
+    <div className="card p-3 border mt-3 shadow">
       <form onSubmit={createTask}>
         <div className="mb-3">
           <label htmlFor="taskText" className="form-label">

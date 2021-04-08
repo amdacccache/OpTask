@@ -84,7 +84,7 @@ const Task = (props) => {
 
   return (
     <div>
-      <div className="card mt-3 border shadow-lg">
+      <div className="card mt-3 border shadow">
         <div className="card-body">
           <h3>{props.task.taskText}</h3>
           <hr></hr>
