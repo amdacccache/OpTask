@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 const Project = (props) => {
   let loggedIn = useRef(null);
+  let closeUpdateModalButton = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   //const [loggedInUser, setLoggedInUser] = useState({});
   const [projectData, setProjectData] = useState({});
@@ -78,7 +79,7 @@ const Project = (props) => {
     const parsedResult = await result.json();
     if (parsedResult.updated) {
       toast.success("Successfully updated project");
-      document.querySelector("#closeUpdateModalButton").click();
+      closeUpdateModalButton.current.click();
       setProjectData({ ...projectData, projectName: editFormValue });
     } else {
       toast.error("Couldn't update project. Please try again.");
@@ -352,6 +353,7 @@ const Project = (props) => {
                     className="btn btnClose"
                     data-bs-dismiss="modal"
                     id="closeUpdateModalButton"
+                    ref={closeUpdateModalButton}
                   >
                     Close
                   </button>

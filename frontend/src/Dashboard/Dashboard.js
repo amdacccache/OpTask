@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard(props) {
   let loggedIn = useRef(null);
+  let newProjectForm = useRef(null);
+  let closeModalButton = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
   const [userProjects, setProjectsData] = useState([]);
@@ -54,7 +56,8 @@ function Dashboard(props) {
   // function for handling the submission of a new project
   const newProjectSubmit = async (event) => {
     event.preventDefault();
-    var formData = new FormData(document.querySelector("#newProjectForm"));
+    var formData = new FormData(newProjectForm.current);
+
     const projectName = formData.get("projectName");
     const projectDescription = formData.get("projectDescription");
 
@@ -68,7 +71,7 @@ function Dashboard(props) {
       }),
     });
     if (result) {
-      document.querySelector("#closeModalButton").click();
+      closeModalButton.current.click();
       toast.success("Successfully added a new project!");
       const dataResult = await fetch(
         `/projects/${loggedInUser._id}/page/${page}`,
@@ -248,7 +251,7 @@ function Dashboard(props) {
                     })}
                 </ul>
                 {!isDataLoading && userProjects.length === 0 && (
-                  <div class="container">No Projects Yet!</div>
+                  <div className="container">No Projects Yet!</div>
                 )}
               </div>
             </nav>
@@ -274,7 +277,11 @@ function Dashboard(props) {
                     ></button>
                   </div>
                   <div className="modal-body">
-                    <form id="newProjectForm" onSubmit={newProjectSubmit}>
+                    <form
+                      id="newProjectForm"
+                      ref={newProjectForm}
+                      onSubmit={newProjectSubmit}
+                    >
                       <div className="mb-3">
                         <label
                           htmlFor="recipient-name"
@@ -310,6 +317,7 @@ function Dashboard(props) {
                           className="btn btnClose"
                           data-bs-dismiss="modal"
                           id="closeModalButton"
+                          ref={closeModalButton}
                         >
                           Close
                         </button>
