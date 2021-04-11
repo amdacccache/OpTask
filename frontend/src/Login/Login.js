@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import LogoImage from "../Images/OpTask.png";
 import { toast } from "react-toastify";
@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 const Login = (props) => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const [loginStatus, setLoginStatus] = useState(false);
 
   let handleEmailChange = (event) => {
     setEmailValue(event.target.value);
@@ -29,14 +28,13 @@ const Login = (props) => {
     });
     const parsedRes = await res.json();
     if (parsedRes.loginState) {
-      setLoginStatus(true);
       toast.success("Successful Login.");
       props.loginPressed();
     } else {
       toast.error("Incorrect email or password. Please try again.");
     }
   };
-  if (!loginStatus) {
+  if (!props.loggedIn) {
     return (
       <main className="form-signin text-center">
         <Link to="/">
@@ -87,9 +85,11 @@ const Login = (props) => {
         </form>
       </main>
     );
-  } else {
-    return <Redirect to="/dashboard" />;
   }
+  // we lifted the redirect state up to the main App.js Router
+  // } else {
+  //   return <Redirect to="/dashboard" />;
+  // }
 };
 
 Login.propTypes = {

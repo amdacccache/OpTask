@@ -29,7 +29,6 @@ function Dashboard(props) {
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [projectCount, setProjectCount] = useState(0);
   const [sideBarProjects, setSideBarProjects] = useState([]);
-
   // pagination handling
   const classes = useStyles();
   const [page, setPage] = useState(1);
@@ -38,6 +37,19 @@ function Dashboard(props) {
     setIsDataLoading(true);
     setPage(value);
   };
+
+  //use effect for getting the current user and confirming they are logged in.
+  useEffect(() => {
+    async function fetchData() {
+      const result = await fetch("/auth/isLoggedIn", { method: "GET" });
+      const parsedResult = await result.json();
+      loggedIn.current = parsedResult.isLoggedIn;
+      setLoggedInUser(parsedResult.user);
+      setLoggedIn(loggedIn.current);
+      setIsDataLoading(true);
+    }
+    fetchData();
+  }, []);
 
   // function for handling the submission of a new project
   const newProjectSubmit = async (event) => {
@@ -70,19 +82,6 @@ function Dashboard(props) {
       toast.error("Couldn't create the new project. Please try again!");
     }
   };
-
-  //use effect for getting the current user and confirming they are logged in.
-  useEffect(() => {
-    async function fetchData() {
-      const result = await fetch("/auth/isLoggedIn", { method: "GET" });
-      const parsedResult = await result.json();
-      loggedIn.current = parsedResult.isLoggedIn;
-      setLoggedInUser(parsedResult.user);
-      setLoggedIn(loggedIn.current);
-      setIsDataLoading(true);
-    }
-    fetchData();
-  }, []);
 
   // this use effects will generate the project count to know how many pages the dashboard should have
   useEffect(() => {
@@ -248,6 +247,9 @@ function Dashboard(props) {
                       );
                     })}
                 </ul>
+                {!isDataLoading && userProjects.length === 0 && (
+                  <div class="container">No Projects Yet!</div>
+                )}
               </div>
             </nav>
             {/* start of new project modal setup */}
@@ -354,6 +356,12 @@ function Dashboard(props) {
                     </Link>
                   );
                 })}
+
+                {!isDataLoading && userProjects.length === 0 && (
+                  <div>
+                    <h3>No Projects Yet!</h3>
+                  </div>
+                )}
               </div>
               <div className="d-flex justify-content-center mt-3">
                 <div className={classes.root}>

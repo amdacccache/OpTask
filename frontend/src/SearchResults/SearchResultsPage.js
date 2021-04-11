@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SearchResultsPage() {
+function SearchResultsPage(props) {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -84,10 +84,17 @@ function SearchResultsPage() {
     fetchProjectData();
   }, [loggedInUser, page, query]);
 
+  // this handles the logoutbutton pressing and we call the props.logoutpressed too to let the main App component know the state has changed.
+  const logoutPressed = () => {
+    setLoggedIn(false);
+    setLoggedInUser(null);
+    props.logoutPressed();
+  };
+
   if (isLoggedIn && loggedInUser) {
     return (
       <div>
-        <Navbar />
+        <Navbar logoutPressed={logoutPressed} />
         <div className="container-fluid">
           <div className="row">
             <nav

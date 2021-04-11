@@ -7,7 +7,7 @@ import Loader from "react-loader-spinner";
 import IconImage from "../Images/userIcon.png";
 import Footer from "../Footer/Footer.js";
 
-function UpdateProfile() {
+function UpdateProfile(props) {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -93,10 +93,17 @@ function UpdateProfile() {
     }
   };
 
+  // this handles the logoutbutton pressing and we call the props.logoutpressed too to let the main App component know the state has changed.
+  const logoutPressed = () => {
+    setLoggedIn(false);
+    setLoggedInUser(null);
+    props.logoutPressed();
+  };
+
   if (isLoggedIn && !updateStatus) {
     return (
       <div className="profile-cont">
-        <Navbar />
+        <Navbar logoutPressed={logoutPressed} />
         <nav
           id="sidebarMenu"
           className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
@@ -121,118 +128,129 @@ function UpdateProfile() {
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <form onSubmit={handleSubmit} className="profile-container">
             <div className="main-body">
-            {isDataLoading && (
-                  <Loader
-                    type="Puff"
-                    color="#3feee6"
-                    height={500}
-                    width={500}
-                    timeout={3000} //3 secs
-                  />
-                )}
+              {isDataLoading && (
+                <Loader
+                  type="Puff"
+                  color="#3feee6"
+                  height={500}
+                  width={500}
+                  timeout={3000} //3 secs
+                />
+              )}
               {!isDataLoading && (
-              <div className="row gutters-sm">
-                <div className="col-md-4 mb-3">
-                  <div className="profile-card">
-                    <div className="p-card-body">
-                      <div className="d-flex flex-column align-items-center text-center">
-                        <img
-                          src={IconImage}
-                          alt="Admin"
-                          className="rounded-circle"
-                          width="120"
-                        />
-                        <h4 class="card-title mb-0">{nameValue}</h4>
-                        <div className="mt-3">
-                          <button type="submit" className="btn editBtn">
-                            Save Profile
-                          </button>
+                <div className="row gutters-sm">
+                  <div className="col-md-4 mb-3">
+                    <div className="profile-card">
+                      <div className="p-card-body">
+                        <div className="d-flex flex-column align-items-center text-center">
+                          <img
+                            src={IconImage}
+                            alt="Admin"
+                            className="rounded-circle"
+                            width="120"
+                          />
+                          <h4 class="card-title mb-0">{nameValue}</h4>
+                          <div className="mt-3">
+                            <button type="submit" className="btn editBtn">
+                              Save Profile
+                            </button>
+                          </div>
+                          <div className="mt-1">
+                            <Link
+                              className="btn btnCancel"
+                              id="buttonColor"
+                              to="/profile"
+                            >
+                              Cancel Update
+                            </Link>
+                          </div>
                         </div>
-                        <div className="mt-1">
-                          <Link className="btn btnCancel" id="buttonColor" to="/profile">
-                            Cancel Update
-                          </Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="profile-card mb-3">
+                      <div className="p-card-body">
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Full Name</h6>
+                          </div>
+                          <input
+                            className="col-sm-9 text-secondary"
+                            value={nameValue}
+                            type="text"
+                            name="fullname"
+                            onChange={handleNameChange}
+                            required
+                          />
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Job</h6>
+                          </div>
+                          <input
+                            className="col-sm-9 text-secondary"
+                            value={jobValue}
+                            type="text"
+                            name="job"
+                            onChange={handleJobChange}
+                            required
+                          />
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Institution</h6>
+                          </div>
+                          <input
+                            className="col-sm-9 text-secondary"
+                            value={institutionValue}
+                            type="text"
+                            name="institution"
+                            onChange={handleInstChange}
+                            required
+                          />
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Email</h6>
+                          </div>
+                          <input
+                            className="col-sm-9 text-secondary"
+                            value={emailValue}
+                            type="email"
+                            name="email"
+                            onChange={handleEmailChange}
+                          />
+                        </div>
+                        <hr />
+                        <div className="row">
+                          <div className="col-sm-3">
+                            <h6 className="mb-0">Location</h6>
+                          </div>
+                          <input
+                            className="col-sm-9 text-secondary"
+                            value={locationValue}
+                            type="text"
+                            name="location"
+                            onChange={handleLocationChange}
+                            required
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-md-8">
-                  <div className="profile-card mb-3">
-                    <div className="p-card-body">
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Full Name</h6>
-                        </div>
-                        <input
-                          className="col-sm-9 text-secondary"
-                          value={nameValue}
-                          type="text"
-                          name="fullname"
-                          onChange={handleNameChange}
-                          required
-                        />
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Job</h6>
-                        </div>
-                        <input
-                          className="col-sm-9 text-secondary"
-                          value={jobValue}
-                          type="text"
-                          name="job"
-                          onChange={handleJobChange}
-                          required
-                        />
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Institution</h6>
-                        </div>
-                        <input
-                          className="col-sm-9 text-secondary"
-                          value={institutionValue}
-                          type="text"
-                          name="institution"
-                          onChange={handleInstChange}
-                          required
-                        />
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Email</h6>
-                        </div>
-                        <input
-                          className="col-sm-9 text-secondary"
-                          value={emailValue}
-                          type="email"
-                          name="email"
-                          onChange={handleEmailChange}
-                        />
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Location</h6>
-                        </div>
-                        <input
-                          className="col-sm-9 text-secondary"
-                          value={locationValue}
-                          type="text"
-                          name="location"
-                          onChange={handleLocationChange}
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>)}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#97caef" fill-opacity="1" d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+              )}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path
+                  fill="#97caef"
+                  fill-opacity="1"
+                  d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                ></path>
+              </svg>
             </div>
           </form>
           <Footer />
@@ -242,6 +260,6 @@ function UpdateProfile() {
   } else {
     return <Redirect to="/profile" />;
   }
-};
+}
 
 export default UpdateProfile;

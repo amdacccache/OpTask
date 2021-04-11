@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import NavLogo from "../Images/NavLogo.png";
-function Navbar() {
+function Navbar(props) {
   const [loggedIn, setLoggedIn] = useState(true);
 
   const handleSignOut = async () => {
@@ -10,6 +10,7 @@ function Navbar() {
     const parsedResponse = await response.json();
     if (parsedResponse.logout) {
       setLoggedIn(false);
+      props.logoutPressed();
     }
   };
 
@@ -17,7 +18,7 @@ function Navbar() {
     return (
       <header className="navbar navbar-light sticky-top nav-bg flex-md-nowrap p-0 shadow">
         <Link className="navbar-brand col-md-3 col-lg-2 me-0 px-3" to="/">
-        <img src={NavLogo} alt="OpTask Logo" className="me-1"/>
+          <img src={NavLogo} alt="OpTask Logo" className="me-1" />
           OpTask
         </Link>
         <button

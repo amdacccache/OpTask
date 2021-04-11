@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer.js";
 import { toast } from "react-toastify";
 import ProjectCard from "../Dashboard/ProjectCard";
 
-function Profile() {
+function Profile(props) {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -61,10 +61,17 @@ function Profile() {
     fetchProjectData();
   }, [loggedInUser]);
 
+  // this handles the logoutbutton pressing and we call the props.logoutpressed too to let the main App component know the state has changed.
+  const logoutPressed = () => {
+    setLoggedIn(false);
+    setLoggedInUser(null);
+    props.logoutPressed();
+  };
+
   if (isLoggedIn) {
     return (
       <div className="profile-cont">
-        <Navbar />
+        <Navbar logoutPressed={logoutPressed} />
         <nav
           id="sidebarMenu"
           className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"

@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
 
-const Project = () => {
+const Project = (props) => {
   let loggedIn = useRef(null);
   const [isLoggedIn, setLoggedIn] = useState(loggedIn);
   //const [loggedInUser, setLoggedInUser] = useState({});
@@ -99,10 +99,16 @@ const Project = () => {
     }
   };
 
+  // this handles the logoutbutton pressing and we call the props.logoutpressed too to let the main App component know the state has changed.
+  const logoutPressed = () => {
+    setLoggedIn(false);
+    props.logoutPressed();
+  };
+
   if (isLoggedIn && !projectDeleted) {
     return (
       <div>
-        <Navbar />
+        <Navbar logoutPressed={logoutPressed} />
         <div className="container-fluid">
           <div className="row">
             <nav
@@ -174,7 +180,11 @@ const Project = () => {
                 <div className="row w-100">
                   <div className="col-10">
                     <h1 className="h2 projTitle">
-                      Project:<strong className="projTitle"> {projectData.projectName}</strong>
+                      Project:
+                      <strong className="projTitle">
+                        {" "}
+                        {projectData.projectName}
+                      </strong>
                     </h1>
                   </div>
                   <div className="col-1">

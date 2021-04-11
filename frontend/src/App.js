@@ -21,7 +21,7 @@ import {
 import { useEffect, useState } from "react";
 
 function App() {
-  let [loggedIn, setLoggedIn] = useState(null);
+  let [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     async function fetchData() {
       const result = await fetch("/auth/isLoggedIn", { method: "GET" });
@@ -46,29 +46,54 @@ function App() {
         <Route exact path="/register">
           <Register />
         </Route>
-        <Route exact path="/login">
-          <Login loginPressed={loginPressed} />
-        </Route>
         <Route exact path="/dashboard">
           {loggedIn ? (
             <Dashboard logoutPressed={logoutPressed} />
           ) : (
-            <Redirect to="/" />
+            <Redirect to="/login" />
           )}
         </Route>
         <Route exact path="/profile">
-          <Profile />
+          {loggedIn ? (
+            <Profile logoutPressed={logoutPressed} />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/profile/update">
-          <UpdateProfile />
+          {loggedIn ? (
+            <UpdateProfile logoutPressed={logoutPressed} />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/projects/:projectId">
-          <Project />
+          {loggedIn ? (
+            <Project logoutPressed={logoutPressed} />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route exact path="/search/:query">
-          {({ location }) => {
-            return <SearchResultsPage location={location.pathname} />;
-          }}
+          {loggedIn ? (
+            ({ location }) => {
+              return (
+                <SearchResultsPage
+                  location={location.pathname}
+                  logoutPressed={logoutPressed}
+                />
+              );
+            }
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Route>
+        <Route exact path="/login">
+          {!loggedIn ? (
+            <Login loginPressed={loginPressed} loggedIn={loggedIn} />
+          ) : (
+            <Redirect to="/dashboard" />
+          )}
         </Route>
         <Route exact path="/">
           {loggedIn ? <Redirect to="/dashboard" /> : <Landing />}
