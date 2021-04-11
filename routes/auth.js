@@ -23,22 +23,27 @@ router.post("/login", function (req, res, next) {
 });
 
 //handles register requests
-router.post("/register", (req, res) => {
-  const saltHash = passwordUtils.generatePassword(req.body.userPassword);
+router.post("/register", async (req, res) => {
+  const duplicateEmail = await opDB.getUserByEmail(req.body.userEmail);
+  if (!duplicateEmail) {
+    const saltHash = passwordUtils.generatePassword(req.body.userPassword);
 
-  const salt = saltHash.salt;
-  const hash = saltHash.hash;
+    const salt = saltHash.salt;
+    const hash = saltHash.hash;
 
-  opDB.saveNewUser({
-    fullname: req.body.userFullName,
-    institution: req.body.userInst,
-    job: req.body.userJob,
-    location: req.body.userLocation,
-    username: req.body.userEmail,
-    hash: hash,
-    salt: salt,
-  });
-  res.send({ registered: true });
+    opDB.saveNewUser({
+      fullname: req.body.userFullName,
+      institution: req.body.userInst,
+      job: req.body.userJob,
+      location: req.body.userLocation,
+      username: req.body.userEmail,
+      hash: hash,
+      salt: salt,
+    });
+    res.send({ registered: true });
+  } else {
+    res.send({ registered: false });
+  }
 });
 
 router.get("/isLoggedIn", (req, res) => {

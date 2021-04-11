@@ -51,7 +51,7 @@ const Register = () => {
       toast.success("Successfully created account.");
       setRegisterStatus(true);
     } else {
-      toast.error("Unable to register. Please try again.");
+      toast.error("That email is taken. Please use a different email address.");
     }
   };
   if (!registerStatus) {
@@ -149,7 +149,7 @@ const Register = () => {
             />
             <label htmlFor="userPassword">Password</label>
           </div>
-  
+
           <button type="submit" className="w-100 btn btn-lg submitBtn">
             Sign Up
           </button>
