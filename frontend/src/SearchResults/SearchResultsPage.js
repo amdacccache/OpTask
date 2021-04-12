@@ -188,7 +188,7 @@ function SearchResultsPage(props) {
                 <div className={classes.root}>
                   <Typography>Page: {page}</Typography>
                   <Pagination
-                    count={Math.floor(projectCount / 10) + 1}
+                    count={Math.floor(projectCount / 14) + 1}
                     page={page}
                     onChange={handlePaginationChange}
                   />
