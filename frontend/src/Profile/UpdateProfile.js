@@ -27,7 +27,7 @@ function UpdateProfile(props) {
 
   useEffect(() => {
     async function fetchUserData() {
-      if (loggedInUser._id) {
+      if (loggedInUser && loggedInUser._id) {
         const userDataResult = await fetch(`/userData/${loggedInUser._id}`, {
           method: "GET",
         });
@@ -41,7 +41,7 @@ function UpdateProfile(props) {
       }
     }
     fetchUserData();
-  }, [loggedInUser._id]);
+  }, [loggedInUser]);
 
   /* useStates established to prepopulate form */
   let [nameValue, setNameValue] = useState("");

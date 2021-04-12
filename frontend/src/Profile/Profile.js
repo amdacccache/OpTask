@@ -30,7 +30,7 @@ function Profile(props) {
 
   useEffect(() => {
     async function fetchUserData() {
-      if (loggedInUser._id) {
+      if (loggedInUser && loggedInUser._id) {
         const userDataResult = await fetch(`/userData/${loggedInUser._id}`, {
           method: "GET",
         });
@@ -40,7 +40,7 @@ function Profile(props) {
       }
     }
     fetchUserData();
-  }, [loggedInUser._id]);
+  }, [loggedInUser]);
 
   // this use effect will generate the 5 most recent projects of the user
   useEffect(() => {
@@ -56,6 +56,7 @@ function Profile(props) {
         setProjectsData(parsedProjectsData);
       } else {
         toast.error("Please sign in!");
+        setLoggedIn(false);
       }
     }
     fetchProjectData();

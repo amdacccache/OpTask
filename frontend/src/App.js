@@ -54,39 +54,16 @@ function App() {
           )}
         </Route>
         <Route exact path="/profile">
-          {loggedIn ? (
-            <Profile logoutPressed={logoutPressed} />
-          ) : (
-            <Redirect to="/login" />
-          )}
+          <Profile logoutPressed={logoutPressed} />
         </Route>
         <Route exact path="/profile/update">
-          {loggedIn ? (
-            <UpdateProfile logoutPressed={logoutPressed} />
-          ) : (
-            <Redirect to="/login" />
-          )}
+          <UpdateProfile logoutPressed={logoutPressed} />
         </Route>
         <Route exact path="/projects/:projectId">
-          {loggedIn ? (
-            <Project logoutPressed={logoutPressed} />
-          ) : (
-            <Redirect to="/login" />
-          )}
+          <Project logoutPressed={logoutPressed} />
         </Route>
         <Route exact path="/search/:query">
-          {loggedIn ? (
-            ({ location }) => {
-              return (
-                <SearchResultsPage
-                  location={location.pathname}
-                  logoutPressed={logoutPressed}
-                />
-              );
-            }
-          ) : (
-            <Redirect to="/login" />
-          )}
+          <SearchResultsPage logoutPressed={logoutPressed} />
         </Route>
         <Route exact path="/login">
           {!loggedIn ? (

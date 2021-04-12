@@ -46,6 +46,7 @@ function Dashboard(props) {
       const result = await fetch("/auth/isLoggedIn", { method: "GET" });
       const parsedResult = await result.json();
       loggedIn.current = parsedResult.isLoggedIn;
+
       setLoggedInUser(parsedResult.user);
       setLoggedIn(loggedIn.current);
       setIsDataLoading(true);
@@ -90,7 +91,7 @@ function Dashboard(props) {
   useEffect(() => {
     // get the user's project count to implement pagination
     async function fetchProjectCount() {
-      if (loggedInUser) {
+      if (loggedInUser && loggedInUser._id) {
         const projectCountResult = await fetch(
           `/projects/${loggedInUser._id}/count`,
           {
@@ -108,7 +109,7 @@ function Dashboard(props) {
   // use effect that pulls projects based on the page that is selected
   useEffect(() => {
     async function fetchProjectData() {
-      if (loggedInUser) {
+      if (loggedInUser && loggedInUser._id) {
         const dataResult = await fetch(
           `/projects/${loggedInUser._id}/page/${page}`,
           {
@@ -118,8 +119,6 @@ function Dashboard(props) {
         const parsedProjectsData = await dataResult.json();
         setProjectsData(parsedProjectsData);
         setIsDataLoading(false);
-      } else {
-        toast.error("Please sign in!");
       }
     }
     fetchProjectData();
@@ -128,7 +127,7 @@ function Dashboard(props) {
   // use effect that pulls the 5 most recently created projects for the user if they exist
   useEffect(() => {
     async function getRecentProjects() {
-      if (loggedInUser) {
+      if (loggedInUser && loggedInUser._id) {
         // we are reusing the profile projects card because it also generates the most recent 5 projects.
         const rawData = await fetch(`/projects/${loggedInUser._id}/profile`);
         const parsedRecentProjects = await rawData.json();
@@ -388,7 +387,7 @@ function Dashboard(props) {
       </div>
     );
   } else {
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   }
 }
 

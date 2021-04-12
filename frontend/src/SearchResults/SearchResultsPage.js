@@ -69,7 +69,7 @@ function SearchResultsPage(props) {
   useEffect(() => {
     async function fetchProjectData() {
       console.log(loggedInUser);
-      if (loggedInUser._id && query) {
+      if (loggedInUser && loggedInUser._id && query) {
         const dataResult = await fetch(
           `/searchProjects/${loggedInUser._id}/${query}/page/${page}`,
           {
@@ -182,6 +182,7 @@ function SearchResultsPage(props) {
                     </Link>
                   );
                 })}
+                {userProjects.length === 0 && <h3> Results not found.</h3>}
               </div>
               <div className="d-flex justify-content-center mt-2">
                 <div className={classes.root}>
