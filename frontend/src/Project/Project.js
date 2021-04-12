@@ -196,7 +196,7 @@ const Project = (props) => {
                       <strong className="projTitle">
                         {" "}
                         {projectData.projectName}
-                      </strong>
+                      </strong>{" "}
                       - {projectData.projectDescription}
                     </h1>
                   </div>
