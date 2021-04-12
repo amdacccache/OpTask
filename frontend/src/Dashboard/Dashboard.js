@@ -325,9 +325,6 @@ function Dashboard(props) {
                         </button>
                       </div>
                     </form>
-                    <div className="modal-footer">
-                      <p>Project names cannot be changed yet.</p>
-                    </div>
                   </div>
                 </div>
               </div>
