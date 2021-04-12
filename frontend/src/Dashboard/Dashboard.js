@@ -31,6 +31,8 @@ function Dashboard(props) {
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [projectCount, setProjectCount] = useState(0);
   const [sideBarProjects, setSideBarProjects] = useState([]);
+  const [databaseQueried, setDataQueried] = useState(false);
+
   // pagination handling
   const classes = useStyles();
   const [page, setPage] = useState(1);
@@ -119,6 +121,7 @@ function Dashboard(props) {
         const parsedProjectsData = await dataResult.json();
         setProjectsData(parsedProjectsData);
         setIsDataLoading(false);
+        setDataQueried(true);
       }
     }
     fetchProjectData();
@@ -361,11 +364,13 @@ function Dashboard(props) {
                   );
                 })}
 
-                {!isDataLoading && userProjects.length === 0 && (
-                  <div>
-                    <h3>No Projects Yet!</h3>
-                  </div>
-                )}
+                {!isDataLoading &&
+                  databaseQueried &&
+                  userProjects.length === 0 && (
+                    <div>
+                      <h3>No Projects Yet!</h3>
+                    </div>
+                  )}
               </div>
               <div className="d-flex justify-content-center mt-3">
                 <div className={classes.root}>

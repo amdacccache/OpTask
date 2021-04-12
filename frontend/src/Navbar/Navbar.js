@@ -20,7 +20,12 @@ function Navbar(props) {
     return (
       <header className="navbar navbar-light sticky-top nav-bg flex-md-nowrap p-0 shadow">
         <Link className="navbar-brand col-md-3 col-lg-2 me-0 px-3" to="/">
-          <img src={NavLogo} alt="OpTask Logo" className="me-1" />
+          <img
+            src={NavLogo}
+            alt="OpTask Logo"
+            className="me-1"
+            style={{ width: "35px", height: "35px" }}
+          />
           OpTask
         </Link>
         <button

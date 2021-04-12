@@ -21,6 +21,7 @@ const Project = (props) => {
   const [editProjectNameValue, setEditProjectNameValue] = useState("");
   const [editProjectDescValue, setEditProjectDescValue] = useState("");
   const [projectDeleted, setProjectDeleted] = useState(false);
+  const [databaseQueried, setDataQueried] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -52,6 +53,7 @@ const Project = (props) => {
         const parsedResult = await result.json();
         setTasksData(parsedResult);
         setIsDataLoading(false);
+        setDataQueried(true);
       }
     }
     fetchProject();
@@ -263,9 +265,9 @@ const Project = (props) => {
                             />
                           );
                         })
-                    ) : (
+                    ) : databaseQueried ? (
                       <h4 className="m-3">No tasks yet!</h4>
-                    )}
+                    ) : null}
                   </div>
                 </div>
                 <div className=" col-4">

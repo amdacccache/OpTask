@@ -26,6 +26,7 @@ function SearchResultsPage(props) {
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [projectCount, setProjectCount] = useState(0);
   const { query } = useParams();
+  const [databaseQueried, setDataQueried] = useState(false);
 
   // pagination handling
   const classes = useStyles();
@@ -79,6 +80,7 @@ function SearchResultsPage(props) {
         const parsedProjectsData = await dataResult.json();
         setProjectsData(parsedProjectsData);
         setIsDataLoading(false);
+        setDataQueried(true);
       }
     }
     fetchProjectData();
@@ -182,7 +184,9 @@ function SearchResultsPage(props) {
                     </Link>
                   );
                 })}
-                {userProjects.length === 0 && <h3> Results not found.</h3>}
+                {(databaseQueried && userProjects.length) === 0 && (
+                  <h3> Results not found.</h3>
+                )}
               </div>
               <div className="d-flex justify-content-center mt-2">
                 <div className={classes.root}>
