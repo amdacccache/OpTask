@@ -182,7 +182,7 @@ function OpTaskDB() {
     }
   };
 
-  opDB.updateProject = async (projectId, newName) => {
+  opDB.updateProject = async (projectId, newName, newDescription) => {
     let client;
     try {
       console.log("Updating project");
@@ -198,6 +198,7 @@ function OpTaskDB() {
         {
           $set: {
             projectName: newName,
+            projectDescription: newDescription,
           },
         }
       );

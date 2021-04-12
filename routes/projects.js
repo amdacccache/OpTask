@@ -91,7 +91,8 @@ router.post("/deletetask", async (req, res) => {
 router.post("/updateProject/:id", async (req, res) => {
   const projectId = req.params.id;
   const newName = req.body.newName;
-  const result = await opDB.updateProject(projectId, newName);
+  const newDescription = req.body.newDescription;
+  const result = await opDB.updateProject(projectId, newName, newDescription);
   if (result) {
     res.send({ updated: true });
   }

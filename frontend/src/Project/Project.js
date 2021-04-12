@@ -17,7 +17,8 @@ const Project = (props) => {
   //const [displayTaskForm, setDisplayTaskForm] = useState(false);
   let { projectId } = useParams();
   const [isDataLoading, setIsDataLoading] = useState(false);
-  const [editFormValue, setEditFormValue] = useState("");
+  const [editProjectNameValue, setEditProjectNameValue] = useState("");
+  const [editProjectDescValue, setEditProjectDescValue] = useState("");
   const [projectDeleted, setProjectDeleted] = useState(false);
 
   useEffect(() => {
@@ -39,7 +40,8 @@ const Project = (props) => {
         const result = await fetch(`/projects/projectData/${projectId}`);
         const parsedResult = await result.json();
         setProjectData(parsedResult);
-        setEditFormValue(parsedResult.projectName);
+        setEditProjectNameValue(parsedResult.projectName);
+        setEditProjectDescValue(parsedResult.projectDescription);
       }
     }
 
@@ -62,8 +64,12 @@ const Project = (props) => {
     setTasksData(parsedResult);
   };
 
-  const editFormOnChange = (event) => {
-    setEditFormValue(event.target.value);
+  const editProjectNameOnChange = (event) => {
+    setEditProjectNameValue(event.target.value);
+  };
+
+  const editDescriptionOnChange = (event) => {
+    setEditProjectDescValue(event.target.value);
   };
 
   const updateProject = async () => {
@@ -73,14 +79,19 @@ const Project = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        newName: editFormValue,
+        newName: editProjectNameValue,
+        newDescription: editProjectDescValue,
       }),
     });
     const parsedResult = await result.json();
     if (parsedResult.updated) {
       toast.success("Successfully updated project");
       closeUpdateModalButton.current.click();
-      setProjectData({ ...projectData, projectName: editFormValue });
+      setProjectData({
+        ...projectData,
+        projectName: editProjectNameValue,
+        projectDescription: editProjectDescValue,
+      });
     } else {
       toast.error("Couldn't update project. Please try again.");
     }
@@ -186,6 +197,7 @@ const Project = (props) => {
                         {" "}
                         {projectData.projectName}
                       </strong>
+                      - {projectData.projectDescription}
                     </h1>
                   </div>
                   <div className="col-1">
@@ -340,10 +352,21 @@ const Project = (props) => {
                         type="text"
                         className="form-control"
                         id="project-name"
-                        value={editFormValue}
-                        onChange={editFormOnChange}
+                        value={editProjectNameValue}
+                        onChange={editProjectNameOnChange}
                         required
                       />
+                    </div>
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">
+                        Description:
+                      </label>
+                      <textarea
+                        class="form-control"
+                        id="description-text"
+                        value={editProjectDescValue}
+                        onChange={editDescriptionOnChange}
+                      ></textarea>
                     </div>
                   </form>
                 </div>
