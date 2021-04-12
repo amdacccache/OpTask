@@ -358,7 +358,7 @@ const Project = (props) => {
                       />
                     </div>
                     <div class="mb-3">
-                      <label for="message-text" class="col-form-label">
+                      <label for="description-text" class="col-form-label">
                         Description:
                       </label>
                       <textarea
