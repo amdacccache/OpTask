@@ -20,7 +20,6 @@ const Task = (props) => {
         newText: editTextAreValue,
       }),
     });
-    console.log(result);
     if (result) {
       document.querySelector(`#editTextModal${props.task._id}`).click();
       props.taskUpdated();

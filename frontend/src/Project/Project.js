@@ -61,7 +61,6 @@ const Project = (props) => {
   }, [projectId, projectDeleted]);
 
   const refreshTasks = async function () {
-    console.log("calling refresh of the tasks");
     const result = await fetch(`/projects/${projectId}/tasks`);
     const parsedResult = await result.json();
     setTasksData(parsedResult);
