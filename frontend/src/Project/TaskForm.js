@@ -10,7 +10,6 @@ const TaskForm = (props) => {
   };
 
   const createTask = async (event) => {
-    console.log("clicked new task add");
     event.preventDefault();
     const response = await fetch("/projects/newTask", {
       method: "POST",

@@ -77,7 +77,6 @@ function UpdateProfile(props) {
       userEmail: emailValue,
       id: loggedInUser._id,
     };
-    //console.log(dataToSend)
 
     const res = await fetch("/userData/updateProfile", {
       method: "POST",
@@ -87,7 +86,6 @@ function UpdateProfile(props) {
     const parsedRes = await res.json();
     if (parsedRes.result) {
       setUpdateStatus(true);
-      console.log(updateStatus);
       toast.success("Successfully updated profile!");
     } else {
       toast.error("Couldn't update the profile. Please try again.");

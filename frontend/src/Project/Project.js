@@ -107,7 +107,6 @@ const Project = (props) => {
     if (parsedResult.deleted) {
       setProjectDeleted(true);
       toast.error("Successfully deleted the project");
-      console.log(projectDeleted);
     } else {
       toast.error("Couldn't delete the project. Please try again.");
     }
