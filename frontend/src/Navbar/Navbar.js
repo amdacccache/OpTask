@@ -2,6 +2,8 @@ import "./Navbar.css";
 import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import NavLogo from "../Images/NavLogo.png";
+import PropTypes from "prop-types";
+
 function Navbar(props) {
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -45,5 +47,9 @@ function Navbar(props) {
     return <Redirect to="/login" />;
   }
 }
+
+Navbar.propTypes = {
+  logoutPressed: PropTypes.func.isRequired,
+};
 
 export default Navbar;

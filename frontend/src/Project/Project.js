@@ -6,6 +6,7 @@ import { Redirect, useParams, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 const Project = (props) => {
   let loggedIn = useRef(null);
@@ -142,10 +143,10 @@ const Project = (props) => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-home"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-home"
                       >
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -162,10 +163,10 @@ const Project = (props) => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-users"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-users"
                       >
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                         <circle cx="9" cy="7" r="4"></circle>
@@ -357,12 +358,15 @@ const Project = (props) => {
                         required
                       />
                     </div>
-                    <div class="mb-3">
-                      <label for="description-text" class="col-form-label">
+                    <div className="mb-3">
+                      <label
+                        htmlFor="description-text"
+                        className="col-form-label"
+                      >
                         Description:
                       </label>
                       <textarea
-                        class="form-control"
+                        className="form-control"
                         id="description-text"
                         value={editProjectDescValue}
                         onChange={editDescriptionOnChange}
@@ -399,6 +403,10 @@ const Project = (props) => {
   } else if (projectDeleted) {
     return <Redirect to="/dashboard" />;
   }
+};
+
+Project.propTypes = {
+  logoutPressed: PropTypes.func.isRequired,
 };
 
 export default Project;

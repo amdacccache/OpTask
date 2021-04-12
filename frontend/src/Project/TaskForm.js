@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "./TaskForm.css";
+import PropTypes from "prop-types";
 
 const TaskForm = (props) => {
   const [taskTextValue, setTaskText] = useState("");
@@ -52,6 +53,11 @@ const TaskForm = (props) => {
       </form>
     </div>
   );
+};
+
+TaskForm.propTypes = {
+  newTaskAdded: PropTypes.func.isRequired,
+  projectId: PropTypes.string.isRequired,
 };
 
 export default TaskForm;

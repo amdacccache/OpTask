@@ -94,6 +94,7 @@ const Login = (props) => {
 
 Login.propTypes = {
   loginPressed: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default Login;

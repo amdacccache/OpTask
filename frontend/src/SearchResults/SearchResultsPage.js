@@ -8,6 +8,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Footer from "../Footer/Footer.js";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +69,6 @@ function SearchResultsPage(props) {
   // use effect that pulls projects based on the page that was selected
   useEffect(() => {
     async function fetchProjectData() {
-      console.log(loggedInUser);
       if (loggedInUser && loggedInUser._id && query) {
         const dataResult = await fetch(
           `/searchProjects/${loggedInUser._id}/${query}/page/${page}`,
@@ -204,5 +204,9 @@ function SearchResultsPage(props) {
     return <Redirect to="/login" />;
   }
 }
+
+SearchResultsPage.propTypes = {
+  logoutPressed: PropTypes.func.isRequired,
+};
 
 export default SearchResultsPage;
