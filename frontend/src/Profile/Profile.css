@@ -69,6 +69,7 @@
 .editBtn {
   background-color: #55bcc9;
   color: white;
+  text-decoration: none;
 }
 
 .editBtn:hover {
@@ -77,7 +78,22 @@
   color: #fc4445;
 }
 
+.saveBtn {
+  background-color: #55bcc9;
+  color: white;
+  text-decoration: none;
+  border: none;
+  width: 110px;
+}
+
+.saveBtn:hover {
+  background-color: #97caef; 
+  /* #3feee6 */
+  color: #fc4445;
+}
+
 .btnCancel {
+  text-decoration: none;
   background-color: #fc4445;
   color: white;
 }

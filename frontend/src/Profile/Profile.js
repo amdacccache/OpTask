@@ -154,7 +154,7 @@ function Profile(props) {
                             {userData.fullname}
                           </h4>
                           <div className="mt-3">
-                            <Link className="btn editBtn" to="/profile/update">
+                            <Link className="btn-sm editBtn" to="/profile/update">
                               Edit Profile
                             </Link>
                           </div>

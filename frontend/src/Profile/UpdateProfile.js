@@ -150,14 +150,13 @@ function UpdateProfile(props) {
                           />
                           <h4 class="card-title mb-0">{nameValue}</h4>
                           <div className="mt-3">
-                            <button type="submit" className="btn editBtn">
+                            <button type className="btn-sm saveBtn">
                               Save Profile
                             </button>
                           </div>
                           <div className="mt-1">
                             <Link
-                              className="btn btnCancel"
-                              id="buttonColor"
+                              className="btn-sm btnCancel"
                               to="/profile"
                             >
                               Cancel Update
