@@ -163,7 +163,7 @@ function SearchResultsPage(props) {
                 {isDataLoading && (
                   <Loader
                     type="Puff"
-                    color="#3feee6"
+                    color="#312c8b"
                     height={500}
                     width={500}
                     timeout={3000} //3 secs
