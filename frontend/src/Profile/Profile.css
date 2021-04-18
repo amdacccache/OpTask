@@ -62,43 +62,49 @@
 }
 
 #buttonColor {
-  background-color: red;
+  background-color: #ac0210;
   border: transparent;
 }
 
 .editBtn {
-  background-color: #55bcc9;
+  background-color: #3d37ae;
   color: white;
   text-decoration: none;
 }
 
 .editBtn:hover {
-  background-color: #97caef; 
+  background-color: white;
   /* #3feee6 */
-  color: #fc4445;
+  color: #3d37ae;
+  border: 1px solid #3d37ae;
 }
 
 .saveBtn {
-  background-color: #55bcc9;
+  background-color: #3d37ae;
   color: white;
   text-decoration: none;
   border: none;
-  width: 110px;
 }
 
 .saveBtn:hover {
-  background-color: #97caef; 
-  /* #3feee6 */
-  color: #fc4445;
+  background-color: white;
+  border: 1px solid #3d37ae;
+  color: #3d37ae;
 }
 
 .btnCancel {
   text-decoration: none;
-  background-color: #fc4445;
+  background-color: #ac0210;
   color: white;
 }
 
 .btnCancel:hover {
-  color: #97caef; 
-  background-color: #fc4445;
+  color: #ac0210;
+  background-color: white;
+  border: 1px solid #ac0210;
+}
+
+.descriptor-p {
+  font-size: 1.05rem;
+  font-weight: 400;
 }

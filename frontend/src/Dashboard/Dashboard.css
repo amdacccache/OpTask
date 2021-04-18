@@ -52,7 +52,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #55bcc9;
+  color: #3d37ae;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -66,26 +66,27 @@ body {
 }
 
 .dashTitle {
-  color: #55bcc9;
+  color: #3d37ae;
 }
 
 .createBtn {
-  background-color: #55bcc9;
+  background-color: #3d37ae;
   color: white;
 }
 
 .createBtn:hover {
-  background-color: #97caef;
+  background-color: white;
   /* #3feee6 */
-  color: #fc4445;
+  color: #3d37ae;
+  border: 1px solid #3d37ae;
 }
 
 .btnClose {
-  background-color: #fc4445;
+  background-color: #ac0210;
   color: white;
 }
 
 .btnClose:hover {
-  background-color: #97caef;
-  color: #fc4445;
+  background-color: white;
+  color: #ac0210;
 }

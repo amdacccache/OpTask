@@ -3,15 +3,16 @@
   overflow: auto;
 }
 
-.btnUpdate{
-  background-color: #55bcc9;
+.btnUpdate {
+  background-color: #3d37ae;
   color: white;
 }
 
 .btnUpdate:hover {
-  background-color: #97caef; 
-    /* #3feee6 */
-    color: #fc4445;
+  background-color: white;
+  /* #3feee6 */
+  color: #3d37ae;
+  border: 1px solid #3d37ae;
 }
 
 .btnClose {
@@ -20,10 +21,11 @@
 }
 
 .btnClose:hover {
-  color: #97caef;
-  background-color: #fc4445;
+  color: #ac0210;
+  background-color: white;
+  border: 1px solid #ac0210;
 }
 
 .projTitle {
-  color:  #55bcc9;
+  color: #3d37ae;
 }

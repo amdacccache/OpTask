@@ -6,11 +6,11 @@ function Footer() {
       <div className="p-4">
         <div className="row align-items-center">
           <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
-            <h5 className="text-uppercase colorDesign">OpTask</h5>
+            <p className="text-uppercase colorDesign footer-p">OpTask</p>
             <p> Built by Nabil Arbouz and Anna Daccache (2021)</p>
           </div>
           <div className="col-lg3 col-md-6 mb-4 mb-md-0">
-            <h5 className="text-uppercase colorDesign">Links</h5>
+            <p className="text-uppercase colorDesign footer-p">Links</p>
             <ul className="list-unstyled mb-0">
               <li>
                 <a

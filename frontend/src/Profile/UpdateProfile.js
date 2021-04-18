@@ -150,15 +150,12 @@ function UpdateProfile(props) {
                           />
                           <h4 class="card-title mb-0">{nameValue}</h4>
                           <div className="mt-3">
-                            <button type className="btn-sm saveBtn">
+                            <button type className="btn saveBtn">
                               Save Profile
                             </button>
                           </div>
                           <div className="mt-1">
-                            <Link
-                              className="btn-sm btnCancel"
-                              to="/profile"
-                            >
+                            <Link className="btn btnCancel" to="/profile">
                               Cancel Update
                             </Link>
                           </div>
@@ -171,9 +168,12 @@ function UpdateProfile(props) {
                       <div className="p-card-body">
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Full Name</h6>
+                            <label className="mb-0" htmlFor="nameEditInput">
+                              Full Name
+                            </label>
                           </div>
                           <input
+                            id="nameEditInput"
                             className="col-sm-9 text-secondary"
                             value={nameValue}
                             type="text"
@@ -185,9 +185,12 @@ function UpdateProfile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Job</h6>
+                            <label htmlFor="jobEditInput" className="mb-0">
+                              Job
+                            </label>
                           </div>
                           <input
+                            id="jobEditInput"
                             className="col-sm-9 text-secondary"
                             value={jobValue}
                             type="text"
@@ -199,9 +202,15 @@ function UpdateProfile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Institution</h6>
+                            <label
+                              htmlFor="institutionEditInput"
+                              className="mb-0"
+                            >
+                              Institution
+                            </label>
                           </div>
                           <input
+                            id="institutionEditInput"
                             className="col-sm-9 text-secondary"
                             value={institutionValue}
                             type="text"
@@ -213,9 +222,12 @@ function UpdateProfile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Email</h6>
+                            <label htmlFor="emailEditInput" className="mb-0">
+                              Email
+                            </label>
                           </div>
                           <input
+                            id="emailEditInput"
                             className="col-sm-9 text-secondary"
                             value={emailValue}
                             type="email"
@@ -226,9 +238,12 @@ function UpdateProfile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Location</h6>
+                            <label htmlFor="locationEditInput" className="mb-0">
+                              Location
+                            </label>
                           </div>
                           <input
+                            id="locationEditInput"
                             className="col-sm-9 text-secondary"
                             value={locationValue}
                             type="text"

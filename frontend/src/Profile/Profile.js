@@ -154,7 +154,7 @@ function Profile(props) {
                             {userData.fullname}
                           </h4>
                           <div className="mt-3">
-                            <Link className="btn-sm editBtn" to="/profile/update">
+                            <Link className="btn editBtn" to="/profile/update">
                               Edit Profile
                             </Link>
                           </div>
@@ -167,7 +167,7 @@ function Profile(props) {
                       <div className="p-card-body">
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Full Name</h6>
+                            <p className="mb-0 descriptor-p">Full Name</p>
                           </div>
                           <div className="col-sm-9 text-secondary">
                             {userData.fullname}
@@ -176,7 +176,7 @@ function Profile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Job</h6>
+                            <p className="mb-0 descriptor-p">Job</p>
                           </div>
                           <div className="col-sm-9 text-secondary">
                             {userData.job}
@@ -185,7 +185,7 @@ function Profile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Institution</h6>
+                            <p className="mb-0 descriptor-p">Institution</p>
                           </div>
                           <div className="col-sm-9 text-secondary">
                             {userData.institution}
@@ -194,7 +194,7 @@ function Profile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Email</h6>
+                            <p className="mb-0 descriptor-p">Email</p>
                           </div>
                           <div className="col-sm-9 text-secondary">
                             {userData.username}
@@ -203,7 +203,7 @@ function Profile(props) {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Location</h6>
+                            <p className="mb-0 descriptor-p">Location</p>
                           </div>
                           <div className="col-sm-9 text-secondary">
                             {userData.location}
@@ -212,7 +212,7 @@ function Profile(props) {
                       </div>
                     </div>
                   </div>
-                  <h3 className="mt-4" style={{ color: "#55bcc9" }}>
+                  <h3 className="mt-4" style={{ color: "#3d37ae" }}>
                     Most Recent Projects
                   </h3>
                 </div>

@@ -67,7 +67,7 @@ function NavbarWSearch(props) {
         </form>
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap">
-            <button className="btn nav-link" onClick={handleSignOut}>
+            <button className="btn nav-bar-sign-out" onClick={handleSignOut}>
               Sign out
             </button>
           </li>

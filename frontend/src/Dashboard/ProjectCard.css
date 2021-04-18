@@ -8,5 +8,10 @@
 }
 
 .projectLink:hover {
-  color: #97caef;
+  color: #3d37ae;
+}
+
+.project-card-title {
+  font-size: 1.75rem;
+  font-weight: 500;
 }

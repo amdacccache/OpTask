@@ -38,13 +38,10 @@ const Login = (props) => {
     return (
       <main className="form-signin text-center">
         <Link to="/">
-          <img
-            className="mb-4"
-            src={LogoImage}
-            alt=""
-            width="200"
-            height="200"
-          ></img>
+          <img src={LogoImage} alt="OpTask Logo" width="200" height="200" />
+          <div className="row justify-content-center mb-4">
+            <div>About OpTask</div>
+          </div>
         </Link>
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <form onSubmit={handleSubmit}>
