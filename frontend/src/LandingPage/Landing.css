@@ -17,12 +17,8 @@
     rgba(41, 71, 242, 1) 35%,
     rgba(0, 212, 255, 1) 100%
   ); */
-  background: rgb(63,238,230);
-  background: linear-gradient(
-    90deg, 
-    rgba(63,238,230,1) 0%, 
-    rgba(85,188,201,1) 50%,
-    rgba(151,202,239,1) 100%);
+  background: rgb(61,55,174);
+  background: linear-gradient(90deg, rgba(61,55,174,1) 0%, rgba(151,202,239,1) 100%);
 }
 
 .signUpBtn {
@@ -31,10 +27,10 @@
 }
 
 .signUpBtn:hover {
-  background-color: #97caef; 
+  background-color: white; 
   /* #3feee6 */
-  color: #fc4445;
-  border-color: #fc4445;
+  color: #3d37ae;
+  border-color: #3d37ae;
 }
 
 .page-header {

@@ -19,7 +19,7 @@ function Navbar(props) {
   if (loggedIn) {
     return (
       <header className="navbar navbar-light sticky-top nav-bg flex-md-nowrap p-0 shadow">
-        <Link className="navbar-brand col-md-3 col-lg-2 me-0 px-3" to="/">
+        <Link className="col-md-3 col-lg-2 me-0 px-3 optask-brand-text" to="/">
           <img
             src={NavLogo}
             alt="OpTask Logo"
