@@ -87,7 +87,7 @@ const Project = (props) => {
     });
     const parsedResult = await result.json();
     if (parsedResult.updated) {
-      toast.success("Successfully updated project");
+      toast.dark("Successfully updated project");
       closeUpdateModalButton.current.click();
       setProjectData({
         ...projectData,

@@ -86,7 +86,7 @@ function UpdateProfile(props) {
     const parsedRes = await res.json();
     if (parsedRes.result) {
       setUpdateStatus(true);
-      toast.success("Successfully updated profile!");
+      toast.dark("Successfully updated profile!");
     } else {
       toast.error("Couldn't update the profile. Please try again.");
     }

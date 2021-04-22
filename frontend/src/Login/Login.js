@@ -28,7 +28,7 @@ const Login = (props) => {
     });
     const parsedRes = await res.json();
     if (parsedRes.loginState) {
-      toast.success("Successful Login.");
+      toast.dark("Successful Login.");
       props.loginPressed();
     } else {
       toast.error("Incorrect email or password. Please try again.");

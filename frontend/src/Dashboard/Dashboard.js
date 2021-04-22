@@ -75,7 +75,7 @@ function Dashboard(props) {
     });
     if (result) {
       closeModalButton.current.click();
-      toast.success("Successfully added a new project!");
+      toast.dark("Successfully added a new project!");
       const dataResult = await fetch(
         `/projects/${loggedInUser._id}/page/${page}`,
         {

@@ -23,7 +23,7 @@ const Task = (props) => {
     if (result) {
       document.querySelector(`#editTextModal${props.task._id}`).click();
       props.taskUpdated();
-      toast.success("Successfully updated task!");
+      toast.dark("Successfully updated task!");
     } else {
       toast.error("Couldn't updated task text :(");
     }
@@ -48,7 +48,7 @@ const Task = (props) => {
           .querySelector(`#closeUpdateModalButton${props.task._id}`)
           .click();
         props.taskUpdated();
-        toast.success("Successfully updated task state!");
+        toast.dark("Successfully updated task state!");
       }
     } else {
       console.log("successfully caught bad update value");

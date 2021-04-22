@@ -48,7 +48,7 @@ const Register = () => {
     });
     const parsedRes = await res.json();
     if (parsedRes.registered) {
-      toast.success("Successfully created account.");
+      toast.dark("Successfully created account.");
       setRegisterStatus(true);
     } else {
       toast.error("That email is taken. Please use a different email address.");
