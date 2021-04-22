@@ -5,15 +5,15 @@
 
 .btnUpdate:hover {
     background-color: #97caef;
-    color: #fc4445;
+    color: #520000;
 }
 
 .btnClose {
-    background-color: #fc4445;
+    background-color: #520000;
     color: white; 
 }
 
 .btnClose:hover {
     background-color: #97caef; 
-    color: #fc4445;
+    color: #520000;
 }

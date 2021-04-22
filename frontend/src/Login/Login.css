@@ -30,13 +30,13 @@ button {
 }
 
 .submitBtn {
-  background-color: #3d37ae;
+  background-color: #005252;
   color: white;
 }
 
 .submitBtn:hover {
   background-color: white;
   /* #3feee6 */
-  color: #3d37ae;
-  border: 1px solid #3d37ae;
+  color: #005252;
+  border: 1px solid #005252;
 }

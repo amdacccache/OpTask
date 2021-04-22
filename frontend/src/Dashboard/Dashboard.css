@@ -52,7 +52,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #3d37ae;
+  color: #005252;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -66,27 +66,27 @@ body {
 }
 
 .dashTitle {
-  color: #3d37ae;
+  color: #005252;
 }
 
 .createBtn {
-  background-color: #3d37ae;
+  background-color: #005252;
   color: white;
 }
 
 .createBtn:hover {
   background-color: white;
   /* #3feee6 */
-  color: #3d37ae;
-  border: 1px solid #3d37ae;
+  color: #005252;
+  border: 1px solid #005252;
 }
 
 .btnClose {
-  background-color: #ac0210;
+  background-color: #520000;
   color: white;
 }
 
 .btnClose:hover {
   background-color: white;
-  color: #ac0210;
+  color: #520000;
 }

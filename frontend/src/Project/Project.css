@@ -4,28 +4,28 @@
 }
 
 .btnUpdate {
-  background-color: #3d37ae;
+  background-color: #005252;
   color: white;
 }
 
 .btnUpdate:hover {
   background-color: white;
   /* #3feee6 */
-  color: #3d37ae;
-  border: 1px solid #3d37ae;
+  color: #005252;
+  border: 1px solid #005252;
 }
 
 .btnClose {
-  background-color: #fc4445;
+  background-color: #520000;
   color: white;
 }
 
 .btnClose:hover {
-  color: #ac0210;
+  color: #520000;
   background-color: white;
-  border: 1px solid #ac0210;
+  border: 1px solid #520000;
 }
 
 .projTitle {
-  color: #3d37ae;
+  color: #005252;
 }

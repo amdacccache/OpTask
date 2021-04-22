@@ -127,12 +127,13 @@ function Profile(props) {
         </nav>
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="profile-container">
+            <h1 className="mt-3">Profile:</h1>
             <div className="main-body">
               {isDataLoading && (
                 <div className="container">
                   <Loader
                     type="Puff"
-                    color="#312c8b"
+                    color="#005252"
                     height={500}
                     width={500}
                   />{" "}
@@ -150,9 +151,9 @@ function Profile(props) {
                             className="rounded-circle"
                             width="120"
                           />
-                          <h4 className="card-title mb-0">
+                          <h2 className="card-title mb-0">
                             {userData.fullname}
-                          </h4>
+                          </h2>
                           <div className="mt-3">
                             <Link className="btn editBtn" to="/profile/update">
                               Edit Profile
@@ -212,7 +213,7 @@ function Profile(props) {
                       </div>
                     </div>
                   </div>
-                  <h3 className="mt-4" style={{ color: "#3d37ae" }}>
+                  <h3 className="mt-4" style={{ color: "#005252" }}>
                     Most Recent Projects
                   </h3>
                 </div>
@@ -237,7 +238,7 @@ function Profile(props) {
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path
-                  fill="#1c39bb"
+                  fill="#005252"
                   fillOpacity="1"
                   d="M0,0L48,5.3C96,11,192,21,288,69.3C384,117,480,203,576,208C672,213,768,139,864,133.3C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                 ></path>

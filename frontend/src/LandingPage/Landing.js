@@ -79,7 +79,7 @@ const Landing = () => {
         </svg>
       </header>
       <section className="optask">
-        <div className="container text-center">
+        <div className="container text-center" role="main">
           <div className="row g-5 align-items-center justify-content-center">
             {/* Image from: https://www.vecteezy.com/free-vector/project-management*/}
             <div className="col-md-3">
@@ -116,7 +116,7 @@ const Landing = () => {
             d="M0,64L48,58.7C96,53,192,43,288,64C384,85,480,139,576,181.3C672,224,768,256,864,229.3C960,203,1056,117,1152,96C1248,75,1344,117,1392,138.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
           ></path>
         </svg>
-        <div className="container">
+        <div className="container" role="complementary">
           <div className="row align-items-center justify-content-center">
             <div className="col-md-5">
               <img src={ComputerWoman} alt="woman working at a computer" />

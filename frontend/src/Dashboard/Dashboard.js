@@ -342,7 +342,7 @@ function Dashboard(props) {
                   <div className="container">
                     <Loader
                       type="Puff"
-                      color="#312c8b"
+                      color="#005252"
                       height={500}
                       width={500}
                     />
