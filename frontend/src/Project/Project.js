@@ -266,7 +266,7 @@ const Project = (props) => {
                           );
                         })
                     ) : databaseQueried ? (
-                      <h4 className="m-3">No tasks yet!</h4>
+                      <h3 className="m-3">No tasks yet!</h3>
                     ) : null}
                   </div>
                 </div>

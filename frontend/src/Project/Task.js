@@ -248,15 +248,18 @@ const Task = (props) => {
         className="modal fade"
         id={"editTextModal" + props.task._id}
         tabIndex="-1"
-        aria-labelledby="editTextModalLabel"
+        aria-labelledby={"editTextModalLabel" + props.task._id}
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="editTextModalLabel">
+              <h4
+                className="modal-title"
+                id={"editTextModalLabel" + props.task._id}
+              >
                 Edit Task
-              </h5>
+              </h4>
               <button
                 type="button"
                 className="btn-close"
@@ -270,7 +273,10 @@ const Task = (props) => {
                 onSubmit={updateTaskText}
               >
                 <div className="mb-3">
-                  <label htmlFor="editTextArea" className="col-form-label">
+                  <label
+                    htmlFor={"editTextArea" + props.task._id}
+                    className="col-form-label"
+                  >
                     Task:
                   </label>
                   <textarea

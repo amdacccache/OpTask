@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "./TaskForm.css";
 import PropTypes from "prop-types";
+import "react-toastify/dist/ReactToastify.minimal.css";
 
 const TaskForm = (props) => {
   const [taskTextValue, setTaskText] = useState("");
@@ -25,7 +26,7 @@ const TaskForm = (props) => {
     if (response) {
       setTaskText("");
       props.newTaskAdded();
-      toast.success("Successfully added in a new task!");
+      toast.dark("Successfully added in a new task!");
     }
   };
 

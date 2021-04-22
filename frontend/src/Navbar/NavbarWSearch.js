@@ -58,7 +58,7 @@ function NavbarWSearch(props) {
           onChange={handleSearchFormChange}
         >
           <input
-            className="form-control form-control-dark w-100 rounded"
+            className="form-control w-100 rounded"
             type="text"
             placeholder="Search"
             aria-label="Search"
