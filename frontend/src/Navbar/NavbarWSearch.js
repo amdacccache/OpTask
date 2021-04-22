@@ -51,7 +51,7 @@ function NavbarWSearch(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <form
-          className="w-100 ms-2"
+          className="w-100 ms-4"
           id="navbarSearchForm"
           onSubmit={handleSearchSubmit}
           value={searchValue}
