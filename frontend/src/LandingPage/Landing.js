@@ -13,7 +13,11 @@ const Landing = () => {
     <div className="pageBody">
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container">
-          <img src={LogoImage} alt="OpTask Logo" style={{height: "70px", width: "70px"}} />
+          <img
+            src={LogoImage}
+            alt="OpTask Logo"
+            style={{ height: "70px", width: "70px" }}
+          />
           <h3 className="navbar-nav linkText" href="/">
             OpTask
           </h3>
@@ -139,7 +143,9 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      <div className="container mb-3">
+        <Footer />
+      </div>
     </div>
   );
 };

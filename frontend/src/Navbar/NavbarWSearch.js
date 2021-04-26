@@ -60,8 +60,8 @@ function NavbarWSearch(props) {
           <input
             className="form-control w-100 rounded"
             type="text"
-            placeholder="Search"
-            aria-label="Search"
+            placeholder="Search for a project"
+            aria-label="Project search bar"
             required
           />
         </form>
