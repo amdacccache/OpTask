@@ -47,8 +47,17 @@ const TaskForm = (props) => {
             required
           />
         </div>
-        <button className="btn addBtn" type="submit">
+        <button className="btn addBtn me-2" type="submit">
           Add task
+        </button>
+        <button
+          className="btn btnClose"
+          onClick={(event) => {
+            event.preventDefault();
+            props.closeTaskForm();
+          }}
+        >
+          Cancel
         </button>
       </form>
     </div>
@@ -58,6 +67,7 @@ const TaskForm = (props) => {
 TaskForm.propTypes = {
   newTaskAdded: PropTypes.func.isRequired,
   projectId: PropTypes.string.isRequired,
+  closeTaskForm: PropTypes.func.isRequired,
 };
 
 export default TaskForm;

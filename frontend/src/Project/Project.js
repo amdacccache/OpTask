@@ -22,6 +22,7 @@ const Project = (props) => {
   const [editProjectDescValue, setEditProjectDescValue] = useState("");
   const [projectDeleted, setProjectDeleted] = useState(false);
   const [databaseQueried, setDataQueried] = useState(false);
+  const [showAddTaskForm, setShowAddTaskForm] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -239,10 +240,26 @@ const Project = (props) => {
                 <div className="col-4">
                   <div className="me-3 shadow-lg border rounded-3 container taskContainer">
                     <h2 className="mt-2">To-Do</h2>
-                    <TaskForm
-                      projectId={projectId}
-                      newTaskAdded={refreshTasks}
-                    />
+                    {showAddTaskForm ? (
+                      <TaskForm
+                        projectId={projectId}
+                        newTaskAdded={refreshTasks}
+                        closeTaskForm={() => {
+                          setShowAddTaskForm(false);
+                        }}
+                      />
+                    ) : (
+                      <button
+                        className="btn addBtn"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setShowAddTaskForm(true);
+                        }}
+                      >
+                        Add a new task
+                      </button>
+                    )}
+
                     {isDataLoading && (
                       <Loader
                         type="Puff"
