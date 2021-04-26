@@ -5,7 +5,7 @@ const ProjectCard = (props) => {
     <div className="col">
       <div className="card border rounded shadow">
         <div className="card-body">
-          <p className="card-title project-card-title">{props.name}</p>
+          <h2 className="card-title">{props.name}</h2>
           <p className="card-text">{props.description}</p>
         </div>
       </div>
