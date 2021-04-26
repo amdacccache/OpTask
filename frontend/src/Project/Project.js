@@ -335,9 +335,9 @@ const Project = (props) => {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="editProjectModalLabel">
+                  <h3 className="modal-title" id="editProjectModalLabel">
                     Edit Project
-                  </h5>
+                  </h3>
                   <button
                     type="button"
                     className="btn-close"

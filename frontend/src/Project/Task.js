@@ -153,15 +153,15 @@ const Task = (props) => {
         className="modal fade"
         id={"stateModal" + props.task._id}
         tabIndex="-1"
-        aria-labelledby="timelineModalLabel"
+        aria-label="timelineModal"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">
+              <h4 className="modal-title">
                 Edit progress for task: {props.task.taskText}
-              </h5>
+              </h4>
               <button
                 type="button"
                 className="btn-close"

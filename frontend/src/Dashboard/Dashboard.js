@@ -285,10 +285,7 @@ function Dashboard(props) {
                       onSubmit={newProjectSubmit}
                     >
                       <div className="mb-3">
-                        <label
-                          htmlFor="recipient-name"
-                          className="col-form-label"
-                        >
+                        <label htmlFor="projectName" className="col-form-label">
                           Project Name:
                         </label>
                         <input
@@ -301,7 +298,7 @@ function Dashboard(props) {
                       </div>
                       <div className="mb-3">
                         <label
-                          htmlFor="message-text"
+                          htmlFor="projectDescription"
                           className="col-form-label"
                         >
                           Project Description:
