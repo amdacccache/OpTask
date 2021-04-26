@@ -166,7 +166,6 @@ function SearchResultsPage(props) {
                     color="#005252"
                     height={500}
                     width={500}
-                    timeout={3000} //3 secs
                   />
                 )}
                 {userProjects.map((project) => {

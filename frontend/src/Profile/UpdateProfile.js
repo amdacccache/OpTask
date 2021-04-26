@@ -159,13 +159,7 @@ function UpdateProfile(props) {
             <h1 className="mt-3">Profile:</h1>
             <div className="main-body">
               {isDataLoading && (
-                <Loader
-                  type="Puff"
-                  color="#005252"
-                  height={500}
-                  width={500}
-                  timeout={3000} //3 secs
-                />
+                <Loader type="Puff" color="#005252" height={500} width={500} />
               )}
               {!isDataLoading && (
                 <div className="row gutters-sm">
