@@ -42,7 +42,7 @@ function App() {
   return (
     <Router>
       <div aria-live="polite" aria-label="toast message">
-        <ToastContainer role="alert" ariaLabel="toast" />
+        <ToastContainer role="alert" ariaLabel="toast" /> // Good job!
       </div>
       <Switch>
         <Route exact path="/register">
