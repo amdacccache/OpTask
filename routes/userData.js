@@ -13,6 +13,7 @@ router.post("/updateProfile", async function (req, res) {
   if (databaseResult) {
     res.send({ result: true });
   }
+  // Is it possible that this failed? What about the error handling?
 });
 
 module.exports = router;
